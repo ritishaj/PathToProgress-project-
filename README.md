@@ -11,7 +11,7 @@ I picked this project to design a system for students to have a record of all th
 - As a user, I want to be able to select the courses within the given institution and add it to a list of courses for the semester.
 - As a user, I want to be able to set a certain grade as an academic goal for each course.
 - As I user, I want to be able to log in and out of my account. 
-- As I user, I want to be able to see my progress in past and current courses. 
+- As I user, I want to be able to see my current grade in past and current courses. 
 - As I user, I want to be able to end the tracking when the course is over and add it to the list of past courses. 
 
 
