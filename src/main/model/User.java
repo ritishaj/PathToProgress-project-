@@ -41,11 +41,10 @@ public class User {
             currentCourses.addCourse(course);
             System.out.println("course added");
             return true;
-        } else if (currentCourses.doesContain(course)) {
+        } else {
             System.out.println("course is already there bro");
             return false;
         }
-        return false;
     }
 
     // MODIFIES: CurrentCourses

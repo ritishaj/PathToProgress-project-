@@ -17,14 +17,6 @@ public class SetOfUsers {
         users.add(user);
     }
 
-    // MODIFIES: this
-    // EFFECTS: removes a user from the set of users if it contains user,
-    //          otherwise do nothing
-    public void removeUser(User user) {
-        if (users.contains(user)) {
-            users.remove(user);
-        }
-    }
 
     // EFFECTS: return true if user is in the set of users, false if not
     public boolean hasUser(User user) {
@@ -73,8 +65,4 @@ public class SetOfUsers {
         return null;
     }
 
-    //getters
-    public Collection<User> getUsers() {
-        return users;
-    }
 }

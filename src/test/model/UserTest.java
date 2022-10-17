@@ -31,6 +31,7 @@ public class UserTest {
 
     @Test
     public void testConstructorTwoFields() {
+        User inputTestUser = new User("gio", "pooperskit9");
         assertEquals("gio", testUser.getUsername());
         assertEquals("pooperskit9", testUser.getPassword());
 
@@ -87,6 +88,7 @@ public class UserTest {
 
         assertEquals(89,testUser.getGradeGoal(c1));
         assertEquals(90,testUser.getGradeGoal(c2));
+        assertEquals(90,testUser.getGradeGoals().get(1));
     }
 
     @Test

@@ -49,6 +49,7 @@ public class ListOfCoursesTest {
 
         assertEquals(3, testCourseList.numOfCourses());
         assertTrue(testCourseList.doesContain(c3));
+        assertEquals(c1, testCourseList.getCourses().get(0));
 
         testCourseList.removeCourse(c2);
         assertEquals(2, testCourseList.numOfCourses());
