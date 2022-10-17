@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a USER having a name, username, password, past courses, current courses and a list of grade goals
+// Represents a USER having a name, username, password, past courses,
+// current courses and a list of grade goals
 public class User {
     private String name;
     private String username;
@@ -15,6 +16,7 @@ public class User {
 
     //REQUIRES: name, username and password has a non-zero length
     //EFFECTS: sets this.name to name, this.username to username and this.password to password
+    //         creates a new empty list for current courses and their grade goals, and past courses
     public User(String name, String username, String password) {
         this.name = name;
         this.username = username;
@@ -60,6 +62,7 @@ public class User {
         pastCourses.addCourse(course);
     }
 
+    // REQUIRES: goal >= 50 & goal <=100
     // MODIFIES: this
     // EFFECTS: adds a grade goal
     public void addGradeGoal(Integer goal) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class ListOfCourses {
+public class ListOfCourses {
     List<Course> courses;
 
     //EFFECTS: creates a new list of courses

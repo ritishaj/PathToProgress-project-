@@ -31,6 +31,8 @@ public class PathToProgress {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes users and institution courses
     private void init() {
         users = new SetOfUsers();
         User rits = new User("ROTITTY", "ritisha", "jhamb");
@@ -57,6 +59,7 @@ public class PathToProgress {
         myObj = new Scanner(System.in);
     }
 
+    // EFFECTS: prompts user to log in
     private void logIn() {
         System.out.println("Enter your username: ");
         String username = myObj.nextLine();
@@ -72,6 +75,7 @@ public class PathToProgress {
         }
     }
 
+    // EFFECTS: prompts user to create an account
     private void createChoice() {
         System.out.println("Name:");
         String name = myObj.nextLine();
@@ -88,6 +92,9 @@ public class PathToProgress {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: checks if password fulfills all requirements:
+    //          must have at least one and be 8 characters long
     private void validatePassword(String name, String username, String password) {
         char[] ch = new char[password.length()];
         for (int i = 0; i < password.length(); i++) {
@@ -114,6 +121,8 @@ public class PathToProgress {
         }
     }
 
+    // EFFECTS: checks if username fulfills all requirements:
+    //          must be at least 5 characters
     private boolean validateUsername(String username) {
         if (username.length() >= 5) {
             return true;
@@ -122,14 +131,21 @@ public class PathToProgress {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new user with given name, username and password
     private void createUser(String name, String username, String password) {
         User user = new User(name, username, password);
         users.addUser(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays menu of options to user and processes the commands
     private void loggedInDisplay(User user) {
-        System.out.println("choose CURRENT COURSES, PAST COURSES, ADD NEW COURSES, LOG OUT"
-                + "(enter as C, P, A, O)");
+        System.out.println("\nSelect from:");
+        System.out.println("\tC -> CURRENT COURSES");
+        System.out.println("\tP -> PAST COURSES");
+        System.out.println("\tA -> ADD NEW COURSES");
+        System.out.println("\tO -> LOG OUT");
         String choice = myObj.nextLine();
         if (choice.equals("C")) {
             viewCurrentCourses(user);
@@ -143,6 +159,9 @@ public class PathToProgress {
         }
     }
 
+
+
+    // EFFECTS: displays all the current courses of user
     private void viewCurrentCourses(User user) {
         System.out.println("Current Courses:");
         for (Course u : user.getCurrentCourses().getCourses()) {
@@ -152,6 +171,7 @@ public class PathToProgress {
         currentCourseDisplay(user);
     }
 
+    // EFFECTS: displays all the past courses of user
     private void viewPastCourses(User user) {
         System.out.println("Past Courses:");
         for (Course u : user.getPastCourses().getCourses()) {
@@ -160,6 +180,8 @@ public class PathToProgress {
         loggedInDisplay(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all ubc courses and prompts user to add a course
     private void addNewCourses(User user) {
         System.out.println("Add a course:");
         for (Course u : ubcCourses.getCourses()) {
@@ -178,8 +200,13 @@ public class PathToProgress {
         currentCourseDisplay(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays current courses and prompts user to remove a course from their list
     private void removeCourses(User user) {
         System.out.println("Which course would you like to remove?");
+        for (Course u : user.getCurrentCourses().getCourses()) {
+            System.out.println(u.getCourseName());
+        }
         String courseSelect = myObj.nextLine();
         for (Course u : user.getCurrentCourses().getCourses()) {
             if (u.getCourseName().equals(courseSelect)) {
@@ -190,8 +217,13 @@ public class PathToProgress {
         currentCourseDisplay(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays current courses and prompts user to end a course
     private void endCourses(User user) {
         System.out.println("Choose a course to end:");
+        for (Course u : user.getCurrentCourses().getCourses()) {
+            System.out.println(u.getCourseName());
+        }
         String courseEnd = myObj.nextLine();
         List<Course> currentCourses = user.getCurrentCourses().getCourses();
         for (int i = 0; i < currentCourses.size(); i++) {
@@ -205,9 +237,15 @@ public class PathToProgress {
         currentCourseDisplay(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays menu of options to user and processes the user command
     private void currentCourseDisplay(User user) {
-        System.out.println("VIEW CURRENT COURSES, ADD MORE COURSES, REMOVE COURSES, END COURSES, GO BACK"
-                + " (enter as C, A, R, E, B)");
+        System.out.println("\nSelect from:");
+        System.out.println("\tC -> REVIEW CURRENT COURSES");
+        System.out.println("\tA -> ADD MORE COURSES");
+        System.out.println("\tR -> REMOVE COURSES");
+        System.out.println("\tE -> END COURSES");
+        System.out.println("\tB -> GO BACK");
         String choice = myObj.nextLine();
         if (choice.equals("R")) {
             removeCourses(user);
