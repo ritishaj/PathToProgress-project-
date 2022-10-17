@@ -1,11 +1,7 @@
 package model;
 
-import org.junit.Before;
+
 import org.junit.jupiter.api.*;
-
-
-import java.util.Collection;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class SetOfUsersTest {
