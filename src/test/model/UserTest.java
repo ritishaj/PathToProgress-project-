@@ -18,6 +18,7 @@ public class UserTest {
         testUser = new User("mark", "gio", "pooperskit9");
         c1 = new Course("ENG101");
         c2 = new Course("MATH104");
+        c3 = new Course("LING100");
     }
 
     @Test
@@ -74,6 +75,7 @@ public class UserTest {
         testUser.addToCurrent(c2);
         testUser.addToCurrent(c3);
         assertEquals(3, testUser.getCurrentCourses().numOfCourses());
+        assertEquals("LING100", testUser.getCurrentCourses().getCourses().get(2).getCourseName());
 
         testUser.removeFromCurrent(c3);
         assertEquals(2, testUser.getCurrentCourses().numOfCourses());

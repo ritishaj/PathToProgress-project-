@@ -50,6 +50,7 @@ public class ListOfCoursesTest {
         assertEquals(3, testCourseList.numOfCourses());
         assertTrue(testCourseList.doesContain(c3));
         assertEquals(c1, testCourseList.getCourses().get(0));
+        assertEquals("PHIL220", testCourseList.getCourses().get(0).getCourseName());
 
         testCourseList.removeCourse(c2);
         assertEquals(2, testCourseList.numOfCourses());
