@@ -28,7 +28,7 @@ public class SetOfUsers {
 
     // EFFECTS: return true if user is in the set of users, false if not
     public boolean hasUser(User user) {
-       return users.contains(user);
+        return users.contains(user);
     }
 
 
@@ -72,6 +72,7 @@ public class SetOfUsers {
         }
         return null;
     }
+
     //getters
     public Collection<User> getUsers() {
         return users;
