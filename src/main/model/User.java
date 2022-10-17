@@ -96,4 +96,8 @@ public class User {
         return currentCourses;
     }
 
+    public List<Integer> getGradeGoals() {
+        return gradeGoals;
+    }
+
 }

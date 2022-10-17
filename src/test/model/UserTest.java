@@ -78,8 +78,25 @@ public class UserTest {
         assertEquals(2, testUser.getCurrentCourses().numOfCourses());
     }
 
+    @Test
+    public void addGradeGoalTest() {
+        testUser.addToCurrent(c1);
+        testUser.addGradeGoal(89);
+        testUser.addToCurrent(c2);
+        testUser.addGradeGoal(90);
 
+        assertEquals(89,testUser.getGradeGoal(c1));
+        assertEquals(90,testUser.getGradeGoal(c2));
+    }
 
+    @Test
+    public void addToPastTest() {
+        testUser.addToCurrent(c1);
+        testUser.addToCurrent(c2);
+        testUser.addToPast(c1);
+        assertEquals(2, testUser.getCurrentCourses().numOfCourses());
+        assertEquals(1, testUser.getPastCourses().numOfCourses());
+    }
 
 
 }
