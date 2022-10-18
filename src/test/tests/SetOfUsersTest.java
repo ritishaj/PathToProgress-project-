@@ -43,7 +43,7 @@ public class SetOfUsersTest {
     public void validateUserTestFalse(){
         testUsers.addUser(u1);
         testUsers.addUser(u2);
-        User user = new User("bob", "clark", "shame12345");
+        User user = new User("bob", "clark", "shame123456");
         assertFalse(testUsers.validateUser(user));
         assertTrue(testUsers.hasUser(u2));
     }
