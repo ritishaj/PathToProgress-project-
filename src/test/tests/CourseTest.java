@@ -1,4 +1,5 @@
-package model;
+package tests;
+import model.Course;
 import org.junit.jupiter.api.*;
 
 

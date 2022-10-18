@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListOfCourses {
+public abstract class ListOfCourses {
     List<Course> courses;
 
     //EFFECTS: creates a new list of courses
@@ -21,11 +21,9 @@ public class ListOfCourses {
     }
 
     // MODIFIES: this
-    // EFFECTS:  if the course is in the list, then remove it, otherwise do nothing
+    // EFFECTS: remove a course from list
     public void removeCourse(Course course) {
-        if (courses.contains(course)) {
-            courses.remove(course);
-        }
+        courses.remove(course);
     }
 
     // EFFECTS:  return true if a course is in the list of courses, false if not

@@ -1,6 +1,8 @@
-package model;
+package tests;
 
 
+import model.SetOfUsers;
+import model.User;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,17 +43,27 @@ public class SetOfUsersTest {
     public void validateUserTestFalse(){
         testUsers.addUser(u1);
         testUsers.addUser(u2);
-        User user = new User("bob", "clark", "pooperskit9");
+        User user = new User("bob", "clark", "shame12345");
         assertFalse(testUsers.validateUser(user));
         assertTrue(testUsers.hasUser(u2));
     }
 
     @Test
-    public void getNameFromLoginTestNull(){
+    public void getNameFromLoginTestSameUsernameNotPassword(){
         testUsers.addUser(u1);
         testUsers.addUser(u2);
         assertTrue(testUsers.hasUser(u2));
-        assertEquals(testUsers.getNameFromLogin(u3), null);
+        User user = new User("bob", "clark", "shame12345");
+        assertEquals(testUsers.getNameFromLogin(user), null);
+    }
+
+    @Test
+    public void getNameFromLoginTestSamePasswordNotUsername(){
+        testUsers.addUser(u1);
+        testUsers.addUser(u2);
+        assertTrue(testUsers.hasUser(u2));
+        User user = new User("bob", "clarky", "shame1234");
+        assertEquals(testUsers.getNameFromLogin(user), null);
     }
 
     @Test
@@ -63,11 +75,20 @@ public class SetOfUsersTest {
     }
 
     @Test
-    public void getAUserNull(){
+    public void getAUserSamePasswordNotUsername(){
         testUsers.addUser(u1);
         testUsers.addUser(u2);
         assertTrue(testUsers.hasUser(u2));
         User user = new User("bob", "goo", "pooperskit9");
+        assertEquals(null, testUsers.getAUser(user));
+    }
+
+    @Test
+    public void getAUserSameUsernameNotPassword(){
+        testUsers.addUser(u1);
+        testUsers.addUser(u2);
+        assertTrue(testUsers.hasUser(u2));
+        User user = new User("bob", "gio", "popperskit9");
         assertEquals(null, testUsers.getAUser(user));
     }
 

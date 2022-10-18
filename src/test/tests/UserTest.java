@@ -1,4 +1,8 @@
-package model;
+package tests;
+import model.Course;
+import model.CurrentCourses;
+import model.PastCourses;
+import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,13 @@
-package model;
+package tests;
 
+import model.Course;
+import model.ListOfCourses;
 import org.junit.jupiter.api.*;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ListOfCoursesTest {
+public abstract class ListOfCoursesTest {
     ListOfCourses testCourseList;
     Course c1;
     Course c2;
@@ -13,7 +15,6 @@ public class ListOfCoursesTest {
 
     @BeforeEach
     public void setup() {
-        testCourseList = new ListOfCourses();
         c1 = new Course("PHIL220");
         c2 = new Course("MATH200");
         c3 = new Course("LING100");
