@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.NoCompleteAssessmentException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,21 @@ public class User {
         int index = currentCourses.getCourses().indexOf(course);
         return gradeGoals.get(index);
     }
+
+    // EFFECTS: returns true if course average is computed,
+    //          return false if NoCompleteException is caught or course is not in the system
+    public double getCourseAverage(Course course) {
+        double grade = -1.0;
+        if (currentCourses.doesContain(course)) {
+            try {
+                grade = course.getCourseAverage();
+            } catch (NoCompleteAssessmentException e) {
+                System.out.println("need to add grades for assessments");
+            }
+        }
+        return grade;
+    }
+
 
     // getters
     public String getName() {

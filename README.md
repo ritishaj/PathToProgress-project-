@@ -13,6 +13,8 @@ I picked this project to design a system for students to have a record of all th
 - As I user, I want to be able to log in and out of my account. 
 - As I user, I want to be able to see my current grade in past and current courses. 
 - As I user, I want to be able to end the tracking when the course is over and add it to the list of past courses. 
+- As a user, when I select log out, I want to be reminded to save my lists of courses to file and have the option to do so or not.
+- As a user, when I start the application, I want to be given the option to load my course lists from file.
 
 
   

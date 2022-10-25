@@ -82,8 +82,7 @@ public class PathToProgress {
         System.out.println("Add username(Must have at least 5 characters)");
         String username = myObj.nextLine();
         if (validateUsername(username)) {
-            System.out.println("Create password (must have at least one number "
-                    + "and be 8 characters long):");
+            System.out.println("Create password (must have at least one number " + "and be 8 characters long):");
             String password = myObj.nextLine();
             validatePassword(name, username, password);
         } else {
@@ -124,11 +123,7 @@ public class PathToProgress {
     // EFFECTS: checks if username fulfills all requirements:
     //          must be at least 5 characters
     private boolean validateUsername(String username) {
-        if (username.length() >= 5) {
-            return true;
-        } else {
-            return false;
-        }
+        return username.length() >= 5;
     }
 
     // MODIFIES: this
@@ -160,7 +155,6 @@ public class PathToProgress {
     }
 
 
-
     // EFFECTS: displays all the current courses of user
     private void viewCurrentCourses(User user) {
         System.out.println("Current Courses:");
@@ -168,7 +162,7 @@ public class PathToProgress {
             System.out.println(u.getCourseName());
             System.out.println("Goal:" + user.getGradeGoal(u));
         }
-        currentCourseDisplay(user);
+        reviewCourseDisplay(user);
     }
 
     // EFFECTS: displays all the past courses of user
@@ -176,6 +170,7 @@ public class PathToProgress {
         System.out.println("Past Courses:");
         for (Course u : user.getPastCourses().getCourses()) {
             System.out.println(u.getCourseName());
+            System.out.println(user.getCourseAverage(u));
         }
         loggedInDisplay(user);
     }
@@ -229,9 +224,13 @@ public class PathToProgress {
         for (int i = 0; i < currentCourses.size(); i++) {
             Course u = currentCourses.get(i);
             if (u.getCourseName().equals(courseEnd)) {
-                user.removeFromCurrent(u);
-                user.addToPast(u);
-                System.out.println("course tracking over. CONGRATULATIONS!");
+                System.out.println("course tracking over! " + "Academic goal: "
+                        + user.getGradeGoals().get(i) + " Total grade: " + user.getCourseAverage(u));
+                if (user.getCourseAverage(u) >= user.getGradeGoals().get(i)) {
+                    System.out.println("Goal achieved :)  CONGRATULATIONS!");
+                    user.removeFromCurrent(u);
+                    user.addToPast(u);
+                }
             }
         }
         currentCourseDisplay(user);
@@ -260,6 +259,154 @@ public class PathToProgress {
         }
     }
 
+    private void reviewCourseDisplay(User user) {
+        System.out.println("\nSelect from:");
+        System.out.println("\tE -> EDIT COURSES");
+        System.out.println("\tB -> GO BACK");
+        String choice = myObj.nextLine();
+        if (choice.equals("B")) {
+            currentCourseDisplay(user);
+        }
+        if (choice.equals("E")) {
+            editCurrentCourses(user);
+        }
 
+    }
+
+    private void editCurrentCourses(User user) {
+        System.out.println("Choose a course to edit:");
+        for (Course u : user.getCurrentCourses().getCourses()) {
+            System.out.println(u.getCourseName());
+        }
+        String courseSelect = myObj.nextLine();
+        List<Course> currentCourses = user.getCurrentCourses().getCourses();
+        for (Course u : currentCourses) {
+            if (u.getCourseName().equals(courseSelect)) {
+                editCourseDisplay(user, u);
+            }
+        }
+        reviewCourseDisplay(user);
+    }
+
+    private void editCourseDisplay(User user, Course courseSelected) {
+        System.out.println("\nSelect from:");
+        System.out.println("\tA -> VIEW ASSESSMENTS");
+        System.out.println("\tC -> CALCULATE AVERAGE");
+        System.out.println("\tG -> CHANGE ACADEMIC GOAL");
+        System.out.println("\tB -> GO BACK");
+        String choice = myObj.nextLine();
+        if (choice.equals("B")) {
+            reviewCourseDisplay(user);
+        }
+        if (choice.equals("A")) {
+            viewAssessmentDisplay(user, courseSelected);
+        }
+        if (choice.equals("C")) {
+            calculateAverage(user, courseSelected);
+        }
+        if (choice.equals("G")) {
+            changeGradeGoal(user, courseSelected);
+        }
+    }
+
+    private void changeGradeGoal(User user, Course courseSelected) {
+        for (Course u : user.getCurrentCourses().getCourses()) {
+            if (u.getCourseName().equals(courseSelected.getCourseName())) {
+                System.out.println("Put in desired number:");
+                Integer newGradeGoal = Integer.valueOf(myObj.nextLine());
+                int index = user.getCurrentCourses().getCourses().indexOf(courseSelected);
+                user.getGradeGoals().set(index, newGradeGoal);
+                System.out.println("GOAL is now " + newGradeGoal);
+            }
+
+        }
+    }
+
+    private void calculateAverage(User user, Course courseSelected) {
+        System.out.println(user.getCourseAverage(courseSelected));
+    }
+
+    private void viewAssessmentDisplay(User user, Course courseSelected) {
+        for (Course u : user.getCurrentCourses().getCourses()) {
+            if (u.getCourseName().equals(courseSelected.getCourseName())) {
+                for (Assessment ass : u.getAllAssessments()) {
+                    System.out.println("Name: " + ass.getName());
+                    System.out.println("Weight: " + ass.getWeight());
+                    if (ass.getGrade() < 0) {
+                        System.out.println("Grade: needs to be added");
+                    } else {
+                        System.out.println("Grade: " + ass.getGrade());
+                    }
+                }
+            }
+
+        }
+        editAssessmentDisplay(user, courseSelected);
+    }
+
+    private void editAssessmentDisplay(User user, Course courseSelected) {
+        System.out.println("\nSelect from:");
+        System.out.println("\tA -> ADD ASSESSMENTS");
+        System.out.println("\tR -> REMOVE ASSESSMENTS");
+        System.out.println("\tG -> ADD GRADES");
+        System.out.println("\tB -> GO BACK");
+        String choice = myObj.nextLine();
+        if (choice.equals("A")) {
+            addAssessment(user, courseSelected);
+        }
+        if (choice.equals("R")) {
+            removeAssessment(user, courseSelected);
+        }
+        if (choice.equals("G")) {
+            addAssessmentGrades(user, courseSelected);
+        }
+        if (choice.equals("B")) {
+            editCourseDisplay(user, courseSelected);
+        }
+
+    }
+
+    private void addAssessmentGrades(User user, Course courseSelected) {
+        System.out.println("choose assessment:");
+        for (Assessment ass : courseSelected.getAllAssessments()) {
+            System.out.println(ass.getName());
+        }
+        String assessmentSelect = myObj.nextLine();
+        List<Assessment> assessmentList = courseSelected.getAllAssessments();
+        for (Assessment ass : assessmentList) {
+            if (ass.getName().equals(assessmentSelect)) {
+                System.out.println("edit grade:");
+                Integer assessmentGrade = Integer.valueOf(myObj.nextLine());
+                ass.setGrade(assessmentGrade);
+            }
+        }
+        editAssessmentDisplay(user, courseSelected);
+
+    }
+
+    private void addAssessment(User user, Course courseSelected) {
+        System.out.println("give it a funky name:");
+        String nameChoice = myObj.nextLine();
+        System.out.println("weightage:");
+        Integer weightChoice = Integer.valueOf(myObj.nextLine());
+        courseSelected.addAssessment(new Assessment(nameChoice, weightChoice));
+        System.out.println(nameChoice + " added!");
+        editAssessmentDisplay(user, courseSelected);
+    }
+
+    private void removeAssessment(User user, Course courseSelected) {
+        for (Assessment ass : courseSelected.getAllAssessments()) {
+            System.out.println(ass.getName());
+        }
+        String deleteChoice = myObj.nextLine();
+        List<Assessment> assessments = courseSelected.getAllAssessments();
+        for (int i = 0; i < assessments.size(); i++) {
+            Assessment a = assessments.get(i);
+            if (a.getName().equals(deleteChoice)) {
+                assessments.remove(a);
+            }
+        }
+        editAssessmentDisplay(user, courseSelected);
+    }
 }
 
