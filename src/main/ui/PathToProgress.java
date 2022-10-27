@@ -2,19 +2,27 @@ package ui;
 
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 // path to progress application
 public class PathToProgress {
     private Scanner myObj;
-    private ListOfCourses courses;
     private SetOfUsers users;
     private UbcCourses ubcCourses;
+    private static final String JSON_STORAGE = "./data/users.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the path to progress application
-    public PathToProgress() {
+    public PathToProgress() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORAGE);
+        jsonReader = new JsonReader(JSON_STORAGE);
         runPathToProgress();
     }
 
@@ -34,7 +42,7 @@ public class PathToProgress {
     // MODIFIES: this
     // EFFECTS: initializes users and institution courses
     private void init() {
-        users = new SetOfUsers();
+        loadUsers();
         User rits = new User("ROTITTY", "ritisha", "jhamb");
         users.addUser(rits);
         ubcCourses = new UbcCourses();
@@ -149,6 +157,7 @@ public class PathToProgress {
         } else if (choice.equals("A")) {
             addNewCourses(user);
         } else if (choice.equals("O")) {
+            saveToUsers(user);
             System.out.println("-logged out-");
             return;
         }
@@ -407,6 +416,39 @@ public class PathToProgress {
             }
         }
         editAssessmentDisplay(user, courseSelected);
+    }
+
+    // EFFECTS: saves the user to file
+    private void saveToUsers(User user) {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(users);
+            jsonWriter.close();
+            System.out.println("Saved " + user.getUsername() + " to " + JSON_STORAGE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORAGE);
+        }
+    }
+
+
+
+    // MODIFIES: this
+    // EFFECTS: loads users from file
+    private void loadUsers() {
+        try {
+            users = jsonReader.read();
+            for (User u : users.getUsers()) {
+                System.out.println("Loaded " + u.getName() + " from " + JSON_STORAGE);
+                System.out.println("Loaded " + u.getUsername() + " from " + JSON_STORAGE);
+                System.out.println("Loaded " + u.getPassword() + " from " + JSON_STORAGE);
+                System.out.println("Loaded" + u.getCurrentCourses() + "from" + JSON_STORAGE);
+                System.out.println("Loaded" + u.getPastCourses() + "from" + JSON_STORAGE);
+                System.out.println("Loaded" + u.getGradeGoals() + "from" + JSON_STORAGE);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORAGE);
+        }
     }
 }
 

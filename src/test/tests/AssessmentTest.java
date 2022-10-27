@@ -27,4 +27,11 @@ public class AssessmentTest {
         assertEquals(89.0, testAss.getGrade());
     }
 
+    @Test
+    public void toJsonTest(){
+        testAss.toJson();
+        assertEquals(0.8, testAss.toJson().getDouble("weight"));
+        assertEquals("Ling project", testAss.toJson().getString("name"));
+    }
+
 }

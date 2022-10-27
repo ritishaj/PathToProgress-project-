@@ -5,6 +5,7 @@ import model.SetOfUsers;
 import model.User;
 import org.junit.jupiter.api.*;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 public class SetOfUsersTest {
     SetOfUsers testUsers;
@@ -102,6 +103,14 @@ public class SetOfUsersTest {
         assertEquals(u1, testUsers.getAUser(user));
         assertEquals(null, testUsers.getAUser(user2));
 
+    }
+
+    @Test
+    public void toJsonTest(){
+        testUsers.toJson();
+        testUsers.addUser(u1);
+        testUsers.addUser(u2);
+        assertEquals(2, testUsers.toJson().getJSONArray("users").length());
     }
 
 

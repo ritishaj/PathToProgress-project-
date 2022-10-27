@@ -1,0 +1,49 @@
+{"users": [
+    {
+        "password": "jhammb123",
+        "gradeGoals": [],
+        "name": "ritisha",
+        "currentCourses": [],
+        "username": "'rtisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "urmom6969",
+        "gradeGoals": [88],
+        "name": "ibby",
+        "currentCourses": [{
+            "courseName": "LING100",
+            "assessments": [{
+                "grade": 88,
+                "name": "O",
+                "weight": 80
+            }]
+        }],
+        "username": "ibby2001",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    }
+]}

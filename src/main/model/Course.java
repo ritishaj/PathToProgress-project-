@@ -1,12 +1,15 @@
 package model;
 
 import exceptions.NoCompleteAssessmentException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a course, having a course name
-public class Course {
+public class Course implements Writable {
     List<Assessment> assessments;
     private final String courseName;
 
@@ -73,6 +76,8 @@ public class Course {
     }
 
 
+
+
     //getters
     public String getCourseName() {
         return courseName;
@@ -83,4 +88,24 @@ public class Course {
     }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("courseName", courseName);
+        json.put("assessments", assessmentsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns users in the set of users as a JSON array
+    // Method was taken from WorkRoom
+    // in https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    private JSONArray assessmentsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Assessment a : assessments) {
+            jsonArray.put(a.toJson());
+        }
+
+        return jsonArray;
+    }
 }

@@ -1,6 +1,9 @@
 package model;
 
-public class Assessment {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Assessment implements Writable {
     protected double weight;
     protected String name;
     protected int grade;
@@ -33,4 +36,12 @@ public class Assessment {
     }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("weight", weight);
+        json.put("grade", grade);
+        return json;
+    }
 }

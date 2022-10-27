@@ -1,13 +1,16 @@
 package model;
 
 import exceptions.NoCompleteAssessmentException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a USER having a name, username, password, past courses,
 // current courses and a list of grade goals
-public class User {
+public class User implements Writable {
     private String name;
     private String username;
     private String password;
@@ -115,5 +118,59 @@ public class User {
     public List<Integer> getGradeGoals() {
         return gradeGoals;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("username", username);
+        json.put("password", password);
+        json.put("pastCourses", pastCoursesToJson());
+        json.put("currentCourses", currentCoursesToJson());
+        json.put("gradeGoals", gradeGoalsToJson());
+        return json;
+    }
+    // EFFECTS: returns past courses in user as a JSON array
+    // Method was taken from WorkRoom
+    // in https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
+    private JSONArray pastCoursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course u : pastCourses.getCourses()) {
+            jsonArray.put(u.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns grade goals in user as a JSON array
+    // Method was taken from WorkRoom
+    // in https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
+    private JSONArray gradeGoalsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Integer i : gradeGoals) {
+            jsonArray.put(i);
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns current courses in user as a JSON array
+    // Method was taken from WorkRoom
+    // in https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
+    private JSONArray currentCoursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course u : currentCourses.getCourses()) {
+            jsonArray.put(u.toJson());
+        }
+
+        return jsonArray;
+    }
+
 
 }

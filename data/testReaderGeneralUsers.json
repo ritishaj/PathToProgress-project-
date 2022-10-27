@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "name": "needle",
+      "username": "needle1",
+      "password": "needle1234",
+      "currentCourses": [
+        {
+          "courseName": "LING100",
+          "assessments": [
+            {
+              "name": "assignment 1",
+              "weight": 9.0,
+              "grade": 89
+            },
+            {
+              "name": "assignment 2",
+              "weight": 10.0,
+              "grade": 80
+            }
+          ]
+        }
+      ],
+      "pastCourses": [
+        {
+          "courseName": "CPSC210",
+          "assessments": [
+            {
+              "name": "project",
+              "weight": 20.0,
+              "grade": 88
+            },
+            {
+              "name": "midterm1",
+              "weight": 10.0,
+              "grade": 60
+            }
+          ]
+        }
+      ],
+      "gradeGoals": [88]
+    },
+    {
+      "name": "saw",
+      "username": "sawie",
+      "password": "sawie123",
+      "currentCourses": [],
+      "pastCourses": [
+        {
+          "courseName": "EOSC320",
+          "assessments": [
+            {
+              "name": "project",
+              "weight": 20.0,
+              "grade": 80
+            },
+            {
+              "name": "midterm1",
+              "weight": 10.0,
+              "grade": 50
+            }
+          ]
+        }
+        ],
+      "gradeGoals": []
+    },
+    {
+      "name": "suzie",
+      "username": "suzie",
+      "password": "suzie123",
+      "currentCourses": [],
+      "pastCourses": [],
+      "gradeGoals": []
+    }
+  ]
+}

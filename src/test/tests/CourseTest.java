@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -102,6 +103,17 @@ class CourseTest {
         assertEquals(23.839998245239258, avg);
 
     }
+
+    @Test
+    public void toJsonTest(){
+        testCourse.toJson();
+        assertEquals("LING100", testCourse.toJson().getString("courseName"));
+        testCourse.addAssessment(a1);
+        testCourse.addAssessment(a2);
+       assertEquals(2, testCourse.toJson().getJSONArray("assessments").length());
+    }
+
+
 
 
 

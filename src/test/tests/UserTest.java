@@ -1,13 +1,16 @@
 package tests;
-import exceptions.AssessmentFullException;
+
 import exceptions.NoCompleteAssessmentException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class UserTest {
     User testUser;
     CurrentCourses currentCoursesTest;
@@ -100,9 +103,9 @@ public class UserTest {
         testUser.addToCurrent(c2);
         testUser.addGradeGoal(90);
 
-        assertEquals(89,testUser.getGradeGoal(c1));
-        assertEquals(90,testUser.getGradeGoal(c2));
-        assertEquals(90,testUser.getGradeGoals().get(1));
+        assertEquals(89, testUser.getGradeGoal(c1));
+        assertEquals(90, testUser.getGradeGoal(c2));
+        assertEquals(2, testUser.getGradeGoals().size());
     }
 
     @Test
@@ -147,7 +150,7 @@ public class UserTest {
     }
 
     @Test
-    public void getCourseAverageExpectNoCompleteAssessmentException(){
+    public void getCourseAverageExpectNoCompleteAssessmentException() {
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c2);
         double avg = -1.0;
@@ -158,6 +161,26 @@ public class UserTest {
         }
         assertEquals(-1.0, testUser.getCourseAverage(c3));
         assertEquals(-1.0, avg);
+
+    }
+
+    @Test
+    public void toJsonTest() {
+        testUser.toJson();
+        assertEquals("gio", testUser.toJson().getString("username"));
+        assertEquals("pooperskit9", testUser.toJson().getString("password"));
+        assertEquals("mark", testUser.toJson().getString("name"));
+        testUser.addToCurrent(c1);
+        testUser.addGradeGoal(99);
+        testUser.addToCurrent(c1);
+        testUser.addGradeGoal(99);
+        testUser.addToCurrent(c2);
+        testUser.addGradeGoal(99);
+        testUser.addToPast(c1);
+
+        assertEquals(2, testUser.toJson().getJSONArray("currentCourses").length());
+        assertEquals(1, testUser.toJson().getJSONArray("pastCourses").length());
+        assertEquals(3, testUser.toJson().getJSONArray("gradeGoals").length());
 
     }
 

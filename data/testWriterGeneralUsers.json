@@ -1,0 +1,26 @@
+{"users": [
+    {
+        "password": "suzie123",
+        "gradeGoals": [],
+        "name": "suzie",
+        "currentCourses": [],
+        "username": "suzie",
+        "pastCourses": []
+    },
+    {
+        "password": "needle1234",
+        "gradeGoals": [],
+        "name": "needle",
+        "currentCourses": [],
+        "username": "needle1",
+        "pastCourses": []
+    },
+    {
+        "password": "sawie123",
+        "gradeGoals": [],
+        "name": "saw",
+        "currentCourses": [],
+        "username": "sawie",
+        "pastCourses": []
+    }
+]}

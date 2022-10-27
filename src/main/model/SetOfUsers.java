@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Collection;
 import java.util.HashSet;
 
-public class SetOfUsers {
+public class SetOfUsers implements Writable {
     Collection<User> users;
 
     // EFFECTS: creates a new set of users
@@ -65,4 +69,28 @@ public class SetOfUsers {
         return null;
     }
 
+    //getter
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("users", usersToJson());
+        return json;
+    }
+
+    // EFFECTS: returns users in the set of users as a JSON array
+    // Method was taken from WorkRoom
+    // in https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    private JSONArray usersToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User u : users) {
+            jsonArray.put(u.toJson());
+        }
+
+        return jsonArray;
+    }
 }
