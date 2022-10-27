@@ -4,7 +4,7 @@ import model.Assessment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AssessmentTest {
     Assessment testAss;
