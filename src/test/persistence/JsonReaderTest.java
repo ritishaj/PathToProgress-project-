@@ -2,12 +2,13 @@ package persistence;
 
 import model.SetOfUsers;
 import model.User;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // based on the supplied WorkRoom example for CPSC210:
