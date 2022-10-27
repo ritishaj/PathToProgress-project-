@@ -5,7 +5,6 @@ import model.SetOfUsers;
 import model.User;
 import org.junit.jupiter.api.*;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 public class SetOfUsersTest {
     SetOfUsers testUsers;
