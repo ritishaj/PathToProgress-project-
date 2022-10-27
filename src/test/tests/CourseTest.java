@@ -1,5 +1,4 @@
 package tests;
-import exceptions.AssessmentFullException;
 import exceptions.NoCompleteAssessmentException;
 import model.Assessment;
 import model.Course;
