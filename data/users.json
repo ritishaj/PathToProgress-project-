@@ -1,10 +1,50 @@
 {"users": [
     {
-        "password": "jhammb123",
+        "password": "jhamb",
         "gradeGoals": [],
-        "name": "ritisha",
+        "name": "ROTITTY",
         "currentCourses": [],
-        "username": "'rtisha",
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
+        "pastCourses": []
+    },
+    {
+        "password": "jhamb",
+        "gradeGoals": [],
+        "name": "ROTITTY",
+        "currentCourses": [],
+        "username": "ritisha",
         "pastCourses": []
     },
     {
@@ -17,33 +57,42 @@
     },
     {
         "password": "urmom6969",
-        "gradeGoals": [88],
+        "gradeGoals": [
+            88,
+            89,
+            89
+        ],
         "name": "ibby",
-        "currentCourses": [{
-            "courseName": "LING100",
-            "assessments": [{
-                "grade": 88,
-                "name": "O",
-                "weight": 80
-            }]
-        }],
+        "currentCourses": [
+            {
+                "courseName": "LING100",
+                "assessments": [{
+                    "grade": 89,
+                    "name": "O",
+                    "weight": 80
+                }]
+            },
+            {
+                "courseName": "CPSC110",
+                "assessments": []
+            }
+        ],
         "username": "ibby2001",
-        "pastCourses": []
+        "pastCourses": [{
+            "courseName": "MATH100",
+            "assessments": [{
+                "grade": -1,
+                "name": "UO",
+                "weight": 89
+            }]
+        }]
     },
     {
-        "password": "jhamb",
+        "password": "jhammb123",
         "gradeGoals": [],
-        "name": "ROTITTY",
+        "name": "ritisha",
         "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
+        "username": "'rtisha",
         "pastCourses": []
     }
 ]}

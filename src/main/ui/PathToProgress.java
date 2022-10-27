@@ -212,7 +212,9 @@ public class PathToProgress {
             System.out.println(u.getCourseName());
         }
         String courseSelect = myObj.nextLine();
-        for (Course u : user.getCurrentCourses().getCourses()) {
+        List<Course> currentCourses = user.getCurrentCourses().getCourses();
+        for (int i = 0; i < currentCourses.size(); i++) {
+            Course u = currentCourses.get(i);
             if (u.getCourseName().equals(courseSelect)) {
                 user.removeFromCurrent(u);
                 System.out.println("course removed successfully");
@@ -237,9 +239,11 @@ public class PathToProgress {
                         + user.getGradeGoals().get(i) + " Total grade: " + user.getCourseAverage(u));
                 if (user.getCourseAverage(u) >= user.getGradeGoals().get(i)) {
                     System.out.println("Goal achieved :)  CONGRATULATIONS!");
-                    user.removeFromCurrent(u);
-                    user.addToPast(u);
                 }
+                user.removeFromCurrent(u);
+                int index = user.getCurrentCourses().getCourses().indexOf(u);
+                user.removeGradeGoal(index);
+                user.addToPast(u);
             }
         }
         currentCourseDisplay(user);
@@ -268,6 +272,8 @@ public class PathToProgress {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays menu of options to user and processes the user command
     private void reviewCourseDisplay(User user) {
         System.out.println("\nSelect from:");
         System.out.println("\tE -> EDIT COURSES");
@@ -282,6 +288,7 @@ public class PathToProgress {
 
     }
 
+    // EFFECTS: displays current courses to user and prompts them to edit them
     private void editCurrentCourses(User user) {
         System.out.println("Choose a course to edit:");
         for (Course u : user.getCurrentCourses().getCourses()) {
@@ -403,6 +410,8 @@ public class PathToProgress {
         editAssessmentDisplay(user, courseSelected);
     }
 
+    // MODIFIES: this
+    // EFFECTS:
     private void removeAssessment(User user, Course courseSelected) {
         for (Assessment ass : courseSelected.getAllAssessments()) {
             System.out.println(ass.getName());
@@ -429,7 +438,6 @@ public class PathToProgress {
             System.out.println("Unable to write to file: " + JSON_STORAGE);
         }
     }
-
 
 
     // MODIFIES: this

@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 // based on the supplied WorkRoom example for CPSC210:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
@@ -75,9 +74,16 @@ public class JsonReader {
         for (int i = 0; i < gradeGoals.length(); i++) {
             user.addGradeGoal(gradeGoals.getInt(i));
         }
+        for (Course c : currentCourses.getCourses()) {
+            user.addToCurrent(c);
+        }
+        for (Course c : pastCourses.getCourses()) {
+            user.addToPast(c);
+        }
         sou.addUser(user);
     }
 
+    // MODIFIES: pc
     // EFFECTS:  parses courses from JSON object and adds them to past courses
     private void addPastCourses(PastCourses pc, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("pastCourses");
@@ -87,6 +93,7 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: pc
     // EFFECTS: parses course from JSON object and adds it to past courses
     private void addPastCourse(PastCourses pc, JSONObject jsonObject) {
         String courseName = jsonObject.getString("courseName");
@@ -99,7 +106,7 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: CurrentCourses
+    // MODIFIES: cc
     // EFFECTS:  parses courses from JSON object and adds them to current courses
     private void addCurrentCourses(CurrentCourses cc, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("currentCourses");
@@ -109,12 +116,12 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: CurrentCourses
+    // MODIFIES: cc
     // EFFECTS: parses course from JSON object and adds it to current courses
     private void addCurrentCourse(CurrentCourses cc, JSONObject jsonObject) {
         String courseName = jsonObject.getString("courseName");
         //  JSONArray assessments = jsonObject.getJSONArray("assessments");
-        jsonObject.put("assessments", new ArrayList<Integer>());
+        // jsonObject.put("assessments", new ArrayList<Integer>());
 
         Course currentCourse = new Course(courseName);
         cc.addCourse(currentCourse);
@@ -122,24 +129,25 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: course
+    // MODIFIES: c
     // EFFECTS: parses assessments from JSON object and adds them to course
     private void addAssessments(Course c, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("assessments");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addAssessment(c, nextThingy);
+            JSONObject nextAss = (JSONObject) json;
+            addAssessment(c, nextAss);
         }
     }
 
-    // MODIFIES: course
+    // MODIFIES: c
     // EFFECTS: parses assessment from JSON object and adds it to course
     private void addAssessment(Course c, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         double weight = jsonObject.getDouble("weight");
-        jsonObject.put("assessments", new ArrayList<Integer>());
+        int grade = jsonObject.getInt("grade");
+        //jsonObject.put("assessments", new ArrayList<Integer>());
 
-        Assessment ass = new Assessment(name, weight);
+        Assessment ass = new Assessment(name, weight, grade);
         c.addAssessment(ass);
 
     }

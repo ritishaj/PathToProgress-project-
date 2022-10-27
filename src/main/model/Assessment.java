@@ -16,6 +16,13 @@ public class Assessment implements Writable {
         this.grade = -1;
     }
 
+    // EFFECTS: creates a new assessment, sets this.name to name and this.weight to weight, and this.grade to grade
+    public Assessment(String name, double weight, int grade) {
+        this.name = name;
+        this.weight = weight;
+        this.grade = grade;
+    }
+
     // MODIFIES: this
     // EFFECTS: sets this.grade to given grade
     public void setGrade(int grade) {

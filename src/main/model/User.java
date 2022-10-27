@@ -73,6 +73,12 @@ public class User implements Writable {
         gradeGoals.add(goal);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes a grade goal
+    public void removeGradeGoal(Integer goal) {
+        gradeGoals.remove(goal);
+    }
+
     //EFFECTS: takes index of course and returns the set grade goal for it
     public int getGradeGoal(Course course) {
         int index = currentCourses.getCourses().indexOf(course);

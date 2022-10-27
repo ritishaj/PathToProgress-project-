@@ -45,12 +45,30 @@ public class JsonReaderTest extends JsonTest {
             assertEquals(3, users.size());
             checkUser("needle", "needle1","needle1234", sou.getAUser(new User("needle",
                     "needle1", "needle1234")));
+            assertEquals(1, sou.getAUser(new User("needle", "needle1", "needle1234")).
+                    getCurrentCourses().numOfCourses());
+            assertEquals(1, sou.getAUser(new User("needle1", "needle1234")).
+                    getPastCourses().numOfCourses());
+            assertEquals(1, sou.getAUser(new User("needle1", "needle1234")).
+                    getGradeGoals().size());
 
             checkUser("saw", "sawie","sawie123", sou.getAUser(new User("saw",
                     "sawie", "sawie123")));
+            assertEquals(0, sou.getAUser(new User("saw", "sawie","sawie123")).
+                    getCurrentCourses().numOfCourses());
+            assertEquals(1, sou.getAUser(new User("saw", "sawie","sawie123")).
+                    getPastCourses().numOfCourses());
+            assertEquals(0, sou.getAUser(new User("saw", "sawie","sawie123")).
+                    getGradeGoals().size());
 
             checkUser("suzie", "suzie", "suzie123", sou.getAUser(new User("suzie",
                     "suzie", "suzie123")));
+            assertEquals(0, sou.getAUser(new User("suzie", "suzie", "suzie123")).
+                    getCurrentCourses().numOfCourses());
+            assertEquals(0, sou.getAUser(new User("suzie", "suzie", "suzie123")).
+                    getPastCourses().numOfCourses());
+            assertEquals(0, sou.getAUser(new User("suzie", "suzie", "suzie123")).
+                    getGradeGoals().size());
 
         } catch (IOException e) {
             fail("Couldn't read from file");
