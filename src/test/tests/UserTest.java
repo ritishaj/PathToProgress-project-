@@ -107,6 +107,21 @@ public class UserTest {
     }
 
     @Test
+    public void removeGradeGoalTest() {
+        testUser.addToCurrent(c1);
+        testUser.addGradeGoal(89);
+        testUser.addToCurrent(c2);
+        testUser.addGradeGoal(90);
+        testUser.addToPast(c2);
+        testUser.removeFromCurrent(c2);
+        testUser.removeGradeGoal(90);
+
+        assertEquals(89, testUser.getGradeGoal(c1));
+        assertEquals(1, testUser.getGradeGoals().size());
+    }
+
+
+    @Test
     public void addToPastTest() {
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c2);

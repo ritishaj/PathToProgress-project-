@@ -3,14 +3,14 @@ package model;
 import exceptions.NoCompleteAssessmentException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.Writable;
+import persistence.Storable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a USER having a name, username, password, past courses,
 // current courses and a list of grade goals
-public class User implements Writable {
+public class User implements Storable {
     private String name;
     private String username;
     private String password;

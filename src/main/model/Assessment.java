@@ -1,9 +1,9 @@
 package model;
 
 import org.json.JSONObject;
-import persistence.Writable;
+import persistence.Storable;
 
-public class Assessment implements Writable {
+public class Assessment implements Storable {
     protected double weight;
     protected String name;
     protected int grade;

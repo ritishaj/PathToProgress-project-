@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-// based on the supplied WorkRoom example for CPSC210:
+// CITATION: code is modelled based on the supplied WorkRoom example for CPSC210
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReaderTest extends JsonTest {
     @Test

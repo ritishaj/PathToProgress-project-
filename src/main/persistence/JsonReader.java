@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
-// based on the supplied WorkRoom example for CPSC210:
+// CITATION: code is modelled based on the supplied WorkRoom example for CPSC210
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 
 public class JsonReader {
@@ -60,15 +60,15 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         String username = jsonObject.getString("username");
         String password = jsonObject.getString("password");
+
         PastCourses pastCourses = new PastCourses();
         addPastCourses(pastCourses, jsonObject);
-        // JSONObject pastCourses = new JSONObject();
-        // jsonObject.put("pastCourses", pastCourses);
+
         CurrentCourses currentCourses = new CurrentCourses();
         addCurrentCourses(currentCourses, jsonObject);
-        //jsonObject.put("currentCourses", currentCourses);
+
         JSONArray gradeGoals = jsonObject.getJSONArray("gradeGoals");
-        // jsonObject.put("gradeGoals", new ArrayList<Integer>());
+
 
         User user = new User(name, username, password);
         for (int i = 0; i < gradeGoals.length(); i++) {
@@ -120,8 +120,7 @@ public class JsonReader {
     // EFFECTS: parses course from JSON object and adds it to current courses
     private void addCurrentCourse(CurrentCourses cc, JSONObject jsonObject) {
         String courseName = jsonObject.getString("courseName");
-        //  JSONArray assessments = jsonObject.getJSONArray("assessments");
-        // jsonObject.put("assessments", new ArrayList<Integer>());
+
 
         Course currentCourse = new Course(courseName);
         cc.addCourse(currentCourse);
@@ -145,7 +144,6 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         double weight = jsonObject.getDouble("weight");
         int grade = jsonObject.getInt("grade");
-        //jsonObject.put("assessments", new ArrayList<Integer>());
 
         Assessment ass = new Assessment(name, weight, grade);
         c.addAssessment(ass);

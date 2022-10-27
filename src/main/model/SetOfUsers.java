@@ -2,12 +2,12 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.Writable;
+import persistence.Storable;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-public class SetOfUsers implements Writable {
+public class SetOfUsers implements Storable {
     Collection<User> users;
 
     // EFFECTS: creates a new set of users

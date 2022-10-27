@@ -3,13 +3,13 @@ package model;
 import exceptions.NoCompleteAssessmentException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.Writable;
+import persistence.Storable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a course, having a course name
-public class Course implements Writable {
+public class Course implements Storable {
     List<Assessment> assessments;
     private final String courseName;
 

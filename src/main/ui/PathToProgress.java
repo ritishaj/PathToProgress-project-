@@ -288,7 +288,7 @@ public class PathToProgress {
 
     }
 
-    // EFFECTS: displays current courses to user and prompts them to edit them
+    // EFFECTS: displays current courses and prompts user to edit them
     private void editCurrentCourses(User user) {
         System.out.println("Choose a course to edit:");
         for (Course u : user.getCurrentCourses().getCourses()) {
@@ -304,6 +304,8 @@ public class PathToProgress {
         reviewCourseDisplay(user);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays menu of options to user and processes the user command
     private void editCourseDisplay(User user, Course courseSelected) {
         System.out.println("\nSelect from:");
         System.out.println("\tA -> VIEW ASSESSMENTS");
@@ -325,6 +327,8 @@ public class PathToProgress {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: enables user to change grade goal for a selected course
     private void changeGradeGoal(User user, Course courseSelected) {
         for (Course u : user.getCurrentCourses().getCourses()) {
             if (u.getCourseName().equals(courseSelected.getCourseName())) {
@@ -338,10 +342,12 @@ public class PathToProgress {
         }
     }
 
+    // EFFECTS: displays course average of selected course to user
     private void calculateAverage(User user, Course courseSelected) {
         System.out.println(user.getCourseAverage(courseSelected));
     }
 
+    // EFFECTS: displays assessments of a selected course to user
     private void viewAssessmentDisplay(User user, Course courseSelected) {
         for (Course u : user.getCurrentCourses().getCourses()) {
             if (u.getCourseName().equals(courseSelected.getCourseName())) {
@@ -360,6 +366,8 @@ public class PathToProgress {
         editAssessmentDisplay(user, courseSelected);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays menu of options to user and processes the command
     private void editAssessmentDisplay(User user, Course courseSelected) {
         System.out.println("\nSelect from:");
         System.out.println("\tA -> ADD ASSESSMENTS");
@@ -382,6 +390,8 @@ public class PathToProgress {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to add grades to assessments of a course
     private void addAssessmentGrades(User user, Course courseSelected) {
         System.out.println("choose assessment:");
         for (Assessment ass : courseSelected.getAllAssessments()) {
@@ -400,6 +410,8 @@ public class PathToProgress {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to add an assessment to a course
     private void addAssessment(User user, Course courseSelected) {
         System.out.println("give it a funky name:");
         String nameChoice = myObj.nextLine();
@@ -411,7 +423,7 @@ public class PathToProgress {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: prompts user to remove an assessment from a course
     private void removeAssessment(User user, Course courseSelected) {
         for (Assessment ass : courseSelected.getAllAssessments()) {
             System.out.println(ass.getName());
