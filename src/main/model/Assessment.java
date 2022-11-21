@@ -42,7 +42,7 @@ public class Assessment implements Storable {
         return grade;
     }
 
-
+    //EFFECTS: returns Assessment as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

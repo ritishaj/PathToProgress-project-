@@ -36,6 +36,9 @@ public class User implements Storable {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.pastCourses = new PastCourses();
+        this.currentCourses = new CurrentCourses();
+        this.gradeGoals = new ArrayList<>();
     }
 
     // MODIFIES: CurrentCourses
@@ -125,6 +128,7 @@ public class User implements Storable {
         return gradeGoals;
     }
 
+    //EFFECTS: returns User as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -177,6 +181,7 @@ public class User implements Storable {
 
         return jsonArray;
     }
+
 
 
 }

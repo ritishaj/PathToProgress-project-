@@ -13,17 +13,19 @@ import java.util.Scanner;
 // path to progress application
 public class PathToProgress {
     private Scanner myObj;
-    private SetOfUsers users;
+    private static SetOfUsers users;
     private UbcCourses ubcCourses;
     private static final String JSON_STORAGE = "./data/users.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private User loginUser;
 
     // EFFECTS: runs the path to progress application
     public PathToProgress() throws FileNotFoundException {
+        LoginDisplay.boot();
         jsonWriter = new JsonWriter(JSON_STORAGE);
         jsonReader = new JsonReader(JSON_STORAGE);
-        runPathToProgress();
+        loadUsers();
     }
 
     // MODIFIES:this
@@ -42,7 +44,6 @@ public class PathToProgress {
     // MODIFIES: this
     // EFFECTS: initializes users and institution courses
     private void init() {
-        loadUsers();
         User rits = new User("ROTITTY", "ritisha", "jhamb");
         users.addUser(rits);
         ubcCourses = new UbcCourses();
@@ -73,10 +74,10 @@ public class PathToProgress {
         String username = myObj.nextLine();
         System.out.println("Enter your password: ");
         String password = myObj.nextLine();
-        User inputUser = new User(username, password);
-        if (users.validateUser(inputUser)) {
-            System.out.println("Welcome, " + users.getNameFromLogin(inputUser) + "!");
-            loggedInDisplay(users.getAUser(inputUser));
+        loginUser = new User(username, password);
+        if (users.validateUser(loginUser)) {
+            System.out.println("Welcome, " + users.getNameFromLogin(loginUser) + "!");
+            loggedInDisplay(users.getAUser(loginUser));
         } else {
             System.out.println("Incorrect details. Try again :( ");
             logIn();

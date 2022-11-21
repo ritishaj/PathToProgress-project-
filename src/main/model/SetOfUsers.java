@@ -22,7 +22,7 @@ public class SetOfUsers implements Storable {
     }
 
 
-    // EFFECTS: return true if user is in the set of users, false if not
+    // EFFECTS: 'return' true if user is in the set of users, false if not
     public boolean hasUser(User user) {
         return users.contains(user);
     }
@@ -74,6 +74,7 @@ public class SetOfUsers implements Storable {
         return users;
     }
 
+    //EFFECTS: returns SetOfUsers as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

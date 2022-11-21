@@ -32,6 +32,7 @@ public abstract class ListOfCourses {
 
     }
 
+
     // EFFECTS: returns number of courses in the list of courses
     public int numOfCourses() {
         return courses.size();
@@ -40,6 +41,16 @@ public abstract class ListOfCourses {
     // getters
     public List<Course> getCourses() {
         return courses;
+    }
+
+    // getters
+    public List<String> getCourseNames() {
+        List<String> courseNames = new ArrayList<>();
+        for (Course c : getCourses()) {
+            String name = c.getCourseName();
+            courseNames.add(name);
+        }
+        return courseNames;
     }
 
 

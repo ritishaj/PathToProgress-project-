@@ -88,6 +88,7 @@ public class Course implements Storable {
     }
 
 
+    //EFFECTS: returns Course as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
