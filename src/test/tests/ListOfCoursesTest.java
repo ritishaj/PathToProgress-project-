@@ -34,6 +34,7 @@ public abstract class ListOfCoursesTest {
         testCourseList.addCourse(c2);
         assertEquals(2, testCourseList.numOfCourses());
         assertTrue(testCourseList.doesContain(c1));
+        assertTrue(testCourseList.getCourseNames().contains("MATH200"));
 
         testCourseList.addCourse(c1);
         assertEquals(2, testCourseList.numOfCourses());
@@ -51,7 +52,7 @@ public abstract class ListOfCoursesTest {
         assertEquals(3, testCourseList.numOfCourses());
         assertTrue(testCourseList.doesContain(c3));
         assertEquals(c1, testCourseList.getCourses().get(0));
-        assertEquals("PHIL220", testCourseList.getCourses().get(0).getCourseName());
+        assertTrue(testCourseList.getCourseNames().contains("MATH200"));
 
         testCourseList.removeCourse(c2);
         assertEquals(2, testCourseList.numOfCourses());

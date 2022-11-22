@@ -28,18 +28,18 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
 
     public CreateAccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
-        currentFrame.setPreferredSize(new Dimension(700, 200));
+        currentFrame.setPreferredSize(new Dimension(1200, 200));
 
-        //jsonReader = new JsonReader(JSON_STORAGE);
-        //jsonWriter = new JsonWriter(JSON_STORAGE);
+        jsonReader = new JsonReader(JSON_STORAGE);
+        jsonWriter = new JsonWriter(JSON_STORAGE);
         currentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         name = new JTextField(15);
         username = new JTextField(15);
         password = new JPasswordField(15);
+
         password.setActionCommand(OK);
         password.addActionListener(this);
 
-        //loadUsers();
 
         setupText();
     }
@@ -89,22 +89,23 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         String cmd = e.getActionCommand();
 
         if (OK.equals(cmd)) { //Process the password.
+            loadUsers();
             String nameInput = this.name.getText();
             String usernameInput = this.username.getText();
             char[] passwordInput = this.password.getPassword();
             loginUser = new User(nameInput, usernameInput, String.valueOf(passwordInput));
-            users.addUser(loginUser);
             try {
                 jsonWriter.open();
                 jsonWriter.write(users);
                 jsonWriter.close();
+                LoginDisplay.users.addUser(loginUser);
             } catch (FileNotFoundException f) {
                 System.out.println("Unable to write to file: " + JSON_STORAGE);
                 JOptionPane.showMessageDialog(currentFrame,
                         "unable to save file");
             }
             JOptionPane.showMessageDialog(currentFrame, "Account Created! Welcome "
-                    + this.users.getNameFromLogin(loginUser) + "!");
+                    + nameInput + "!");
             // closeWindow();
             AccountDisplay.boot();
         }
@@ -122,11 +123,11 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         final CreateAccountDisplay createaccountContentPane = new CreateAccountDisplay();
         currentFrame.getContentPane().removeAll();
         currentFrame.getContentPane().add(createaccountContentPane);
-        currentFrame.setPreferredSize(new Dimension(700, 200));
+        currentFrame.setPreferredSize(new Dimension(1200, 200));
         currentFrame.setTitle("Create New Account:");
         currentFrame.revalidate();
         currentFrame.repaint();
-        
+
         currentFrame.setVisible(true);
     }
 
@@ -141,13 +142,13 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         });
     }
 
-    /*private void loadUsers() {
+    private void loadUsers() {
         try {
             users = jsonReader.read();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORAGE);
         }
-    }*/
+    }
 
     public void closeWindow() {
         setVisible(false);

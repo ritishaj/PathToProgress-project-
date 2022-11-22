@@ -43,7 +43,7 @@ public abstract class ListOfCourses {
         return courses;
     }
 
-    // getters
+    // EFFECTS: returns a list of all course names
     public List<String> getCourseNames() {
         List<String> courseNames = new ArrayList<>();
         for (Course c : getCourses()) {

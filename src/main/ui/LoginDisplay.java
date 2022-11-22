@@ -101,9 +101,6 @@ public class LoginDisplay extends JPanel implements ActionListener {
                 currentUser = users.getAUser(new User(usernameInput, String.valueOf(passwordInput)));
                // System.out.println("user in set check 1" + LoginDisplay.users.getUsers().
                 // contains(LoginDisplay.currentUser));
-                JOptionPane.showMessageDialog(currentFrame, "Success! Welcome "
-                        + this.users.getNameFromLogin(currentUser) + "!");
-                // closeWindow();
                 loadDataOption();
                 AccountDisplay.boot();
             } else {
@@ -117,6 +114,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
             this.password.selectAll();
             resetFocus();
         } else if (cmd.equals(CREATE_ACCOUNT)) {
+            loadUsers();
             CreateAccountDisplay.boot();
         }
     }
@@ -181,6 +179,8 @@ public class LoginDisplay extends JPanel implements ActionListener {
         Image newimg = image.getScaledInstance(200, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         doggy = new ImageIcon(newimg);
 
+        JOptionPane.showMessageDialog(currentFrame, "Success! Welcome "
+                + this.users.getNameFromLogin(currentUser) + "!");
         int loadData = JOptionPane.showOptionDialog(null, "Load your saved courses?", "Load Data",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
