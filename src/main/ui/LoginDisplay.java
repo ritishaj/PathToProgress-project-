@@ -29,6 +29,9 @@ public class LoginDisplay extends JPanel implements ActionListener {
     protected static User currentUser;
     protected static SetOfUsers users;
 
+
+    // MODIFIES: this
+    // EFFECTS: modifies the JFrame and constructs all appropriate elements in it
     public LoginDisplay(JFrame f) {
         currentFrame = f;
         currentFrame.setPreferredSize(new Dimension(700, 200));
@@ -46,6 +49,8 @@ public class LoginDisplay extends JPanel implements ActionListener {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: sets up username and password textfield with their labels
     public void setupText() {
         JLabel usernameLabel = new JLabel("Enter the username:");
         usernameLabel.setLabelFor(username);
@@ -70,6 +75,8 @@ public class LoginDisplay extends JPanel implements ActionListener {
         add(buttonPane);
     }
 
+    // MODIFIES: this
+    // EFFECTS: setup and creates buttons onto panel
     protected JComponent createButtonPanel() {
         JPanel p = new JPanel(new GridLayout(0, 1));
         JButton okButton = new JButton("OK");
@@ -89,6 +96,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sets up the action event when a certain button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -120,10 +128,14 @@ public class LoginDisplay extends JPanel implements ActionListener {
     }
 
 
+
+    //EFFECTS: resets focus for input
     protected void resetFocus() {
         password.requestFocusInWindow();
     }
 
+    // REQUIRES: usernameInput and passwordInput have to be > 1
+    // EFFECTS: checks if username input and password input match with a user in set of users
     private static boolean isPasswordCorrect(String usernameInput, char[] passwordInput) {
         String password = String.valueOf(passwordInput);
         boolean userCorrect = users.validateUser(new User(usernameInput, password));
@@ -131,6 +143,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         return userCorrect;
     }
 
+    // EFFECTS: sets up GUI class
     private static void createAndShowGUI() {
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -153,6 +166,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
+    // EFFECTS: starts up GUI class
     public static void boot() {
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
@@ -164,6 +178,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         });
     }
 
+    // EFFECTS: loads all user files from JSON
     private void loadUsers() {
         try {
             users = jsonReader.read();
@@ -173,6 +188,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: prompts user to load saved file from JSON
     private void loadDataOption() {
         ImageIcon doggy = new ImageIcon("./data/tobs.jpg");
         Image image = doggy.getImage(); // transform it
@@ -196,10 +212,6 @@ public class LoginDisplay extends JPanel implements ActionListener {
         }
     }
 
-    public void closeWindow() {
-        setVisible(false);
-        currentFrame.dispose();
-    }
 
 }
 

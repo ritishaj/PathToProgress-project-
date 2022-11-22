@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 // https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
 // https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
 
-public class AddCourseWindow extends JPanel implements ActionListener {
+public class AddCourseWindow extends JPanel {
     JFrame frame;
     JLabel label = new JLabel("[CHOOSE COURSES]", SwingConstants.CENTER);
     DefaultListModel<String> courseList;
@@ -27,6 +27,8 @@ public class AddCourseWindow extends JPanel implements ActionListener {
     private UbcCourses ubcCourses;
     private static String value = "";
 
+    // MODIFIES: this
+    // EFFECTS: creates new frame and adds elements to it
     public AddCourseWindow() {
         frame = new JFrame();
         frame.setLayout(new FlowLayout());
@@ -53,6 +55,7 @@ public class AddCourseWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sets up a JList with courselist
     public void setupList() {
         courseList = new DefaultListModel<>();
         addCourses();
@@ -66,6 +69,7 @@ public class AddCourseWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sets up courses
     public void setupCourses() {
         ubcCourses = new UbcCourses();
         Course cpsc110 = new Course("CPSC110");
@@ -90,6 +94,7 @@ public class AddCourseWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: adds all ubc courses to a courselist
     public void addCourses() {
         for (int i = 0; i < ubcCourses.getCourses().size(); i++) {
             String courseName = ubcCourses.getCourses().get(i).getCourseName();
@@ -98,6 +103,8 @@ public class AddCourseWindow extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: CurrentCoursesWindow
+    // EFFECTS: adds a selected course to user's current courses
     public void addACourse() {
         listselectionModel = list.getSelectionModel();
         listselectionModel.addListSelectionListener(
@@ -116,6 +123,7 @@ public class AddCourseWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: prompts user to set a grade goal for selected course
     public String setAcademicGoal() {
         int g = -1;
         while (g < 0) {
@@ -142,10 +150,6 @@ public class AddCourseWindow extends JPanel implements ActionListener {
         return null;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //
-    }
 }
 
 

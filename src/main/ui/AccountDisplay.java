@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+// CITATION: account display photo is from https://mobcup.net/wallpaper/you-can-do-it-maumk8gc
 
 public class AccountDisplay extends JPanel implements ActionListener {
     private static final String JSON_STORAGE = "./data/users.json";
@@ -22,6 +23,8 @@ public class AccountDisplay extends JPanel implements ActionListener {
     //private final JsonReader jsonReader;
     private static JFrame currentFrame;
 
+    // MODIFIES: LoginDisplay, this
+    // EFFECTS: creates elements and sets up account menu display
     public AccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
         currentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,6 +43,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: starts up GUI class
     public static void boot() {
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
@@ -51,6 +55,8 @@ public class AccountDisplay extends JPanel implements ActionListener {
         });
     }
 
+    // MODIFIES: LoginDisplay, this
+    // EFFECTS: removes elements from login display frame and replaces with new panel
     private static void createAndShowGUI() {
 
         final AccountDisplay accountContentPane = new AccountDisplay();
@@ -75,6 +81,8 @@ public class AccountDisplay extends JPanel implements ActionListener {
     }
      */
 
+    // MODIFIES: this
+    // EFFECTS: setup and creates buttons onto panel
     private JComponent displayOptions() {
         JPanel p = new JPanel(new GridLayout(0, 1));
         JButton currentCourses = new JButton("View Current Courses");
@@ -100,6 +108,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
         return p;
     }
 
+    // EFFECTS: sets up the action event when a certain button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -119,6 +128,8 @@ public class AccountDisplay extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to save data before logging out
     public void saveDataOption() {
         ImageIcon smiley = new ImageIcon("smile.png");
         JsonWriter jsonWriter = new JsonWriter(JSON_STORAGE);
@@ -145,6 +156,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: closes account window
     public void closeWindow() {
         setVisible(false);
         currentFrame.dispose();

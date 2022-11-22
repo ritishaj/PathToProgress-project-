@@ -26,6 +26,8 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
     private static User loginUser;
     private static SetOfUsers users;
 
+    // MODIFIES: LoginDisplay, this
+    // EFFECTS: creates elements and sets up create account display
     public CreateAccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
         currentFrame.setPreferredSize(new Dimension(1200, 200));
@@ -44,7 +46,8 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         setupText();
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: sets up name, username and password text field with their labels
     public void setupText() {
         JLabel nameLabel = new JLabel("Enter the name:");
         nameLabel.setLabelFor(name);
@@ -69,6 +72,8 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         add(buttonPane);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates button panel and adds it to the JFrame
     protected JComponent createButtonPanel() {
         JPanel p = new JPanel(new GridLayout(0, 1));
         JButton okButton = new JButton("CREATE!");
@@ -84,6 +89,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sets up the action event when a certain button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -117,6 +123,8 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
     }
 
 
+    // MODIFIES: LoginDisplay, this
+    // EFFECTS: removes elements from login display frame and replaces with new panel
     private static void createAndShowGUI() {
         //JFrame frame = new JFrame("Create New Account:");
 
@@ -131,6 +139,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         currentFrame.setVisible(true);
     }
 
+    // EFFECTS: starts up GUI class
     public static void boot() {
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
@@ -142,17 +151,13 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         });
     }
 
+    // EFFECTS: loads all user files from JSON
     private void loadUsers() {
         try {
             users = jsonReader.read();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORAGE);
         }
-    }
-
-    public void closeWindow() {
-        setVisible(false);
-        currentFrame.dispose();
     }
 
 }
