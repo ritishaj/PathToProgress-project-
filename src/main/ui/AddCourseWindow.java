@@ -49,7 +49,7 @@ public class AddCourseWindow extends JPanel implements ActionListener {
         frame.setSize(440, 420);
         frame.setVisible(true);
         panel.setVisible(true);
-        user = LoginDisplay.loginUser;
+        user = LoginDisplay.currentUser;
 
     }
 
@@ -109,6 +109,8 @@ public class AddCourseWindow extends JPanel implements ActionListener {
                         int gg = Integer.parseInt(setAcademicGoal());
                         user.addToCurrent(findCourseWithName(courseName));
                         user.addGradeGoal(gg);
+                        System.out.println("user in set check 2"
+                                + LoginDisplay.users.getUsers().contains(LoginDisplay.currentUser));
                     }
                 });
 

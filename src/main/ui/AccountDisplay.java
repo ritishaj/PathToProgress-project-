@@ -13,22 +13,22 @@ import java.io.IOException;
 
 public class AccountDisplay extends JPanel implements ActionListener {
     private static final String JSON_STORAGE = "./data/users.json";
-    private static SetOfUsers users;
+    //private static SetOfUsers users;
     private static final String CURRENT_COURSES = "view current courses";
     private static final String PAST_COURSES = "view past courses";
     private static final String ADD_COURSES = "add courses";
     private static final String LOG_OUT = "Log Out";
-    private final JsonWriter jsonWriter;
-    private final JsonReader jsonReader;
+    //private final JsonWriter jsonWriter;
+    //private final JsonReader jsonReader;
     private static JFrame currentFrame;
 
     public AccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
         currentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        jsonReader = new JsonReader(JSON_STORAGE);
-        jsonWriter = new JsonWriter(JSON_STORAGE);
-        loadUsers();
+        //jsonReader = new JsonReader(JSON_STORAGE);
+        //jsonWriter = new JsonWriter(JSON_STORAGE);
+        //loadUsers();
 
         JComponent buttonPanel = displayOptions();
         add(buttonPanel);
@@ -36,6 +36,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
         ImageIcon icon = new ImageIcon("./data/download.jpg");
         JLabel label = new JLabel(icon);
         add(label);
+        setPreferredSize(new Dimension(400, 500));
 
     }
 
@@ -64,6 +65,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
         currentFrame.setVisible(true);
     }
 
+    /*
     private void loadUsers() {
         try {
             users = jsonReader.read();
@@ -71,6 +73,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
             System.out.println("Unable to read from file: " + JSON_STORAGE);
         }
     }
+     */
 
     private JComponent displayOptions() {
         JPanel p = new JPanel(new GridLayout(0, 1));
@@ -104,7 +107,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
         if (CURRENT_COURSES.equals(cmd)) {
             CurrentCoursesWindow currentCoursesWindow = new CurrentCoursesWindow();
         } else if (PAST_COURSES.equals(cmd)) {
-            //
+            PastCoursesWindow pastCoursesWindow = new PastCoursesWindow();
         } else if (ADD_COURSES.equals(cmd)) {
             AddCourseWindow addcoursewindow = new AddCourseWindow();
         } else if (LOG_OUT.equals(cmd)) {
@@ -118,6 +121,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
 
     public void saveDataOption() {
         ImageIcon smiley = new ImageIcon("smile.png");
+        JsonWriter jsonWriter = new JsonWriter(JSON_STORAGE);
         int loadData = JOptionPane.showOptionDialog(null, "Save your courses?",
                 "Save Data",
                 JOptionPane.YES_NO_OPTION,
@@ -127,7 +131,9 @@ public class AccountDisplay extends JPanel implements ActionListener {
         if (loadData == JOptionPane.YES_OPTION) {
             try {
                 jsonWriter.open();
-                jsonWriter.write(users);
+                System.out.println("user in set check 3"
+                        + LoginDisplay.users.getUsers().contains(LoginDisplay.currentUser));
+                jsonWriter.write(LoginDisplay.users);
                 jsonWriter.close();
                 JOptionPane.showMessageDialog(currentFrame,
                         "Courses have been saved :)");

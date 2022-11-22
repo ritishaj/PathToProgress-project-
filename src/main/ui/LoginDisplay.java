@@ -23,21 +23,19 @@ public class LoginDisplay extends JPanel implements ActionListener {
     private JTextField username;
     private JPasswordField password;
     private static final String JSON_STORAGE = "./data/users.json";
-    private JsonWriter jsonWriter;
+    //private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private User currentUser;
 
-
-    protected static User loginUser;
-    private static SetOfUsers users;
+    protected static User currentUser;
+    protected static SetOfUsers users;
 
     public LoginDisplay(JFrame f) {
         currentFrame = f;
         currentFrame.setPreferredSize(new Dimension(700, 200));
 
         jsonReader = new JsonReader(JSON_STORAGE);
-        jsonWriter = new JsonWriter(JSON_STORAGE);
-        loadUsers();
+        //jsonWriter = new JsonWriter(JSON_STORAGE);
+        //loadUsers();
 
         username = new JTextField(15);
         password = new JPasswordField(15);
@@ -96,11 +94,13 @@ public class LoginDisplay extends JPanel implements ActionListener {
         String cmd = e.getActionCommand();
 
         if (OK.equals(cmd)) { //Process the password.
+            loadUsers();
             String usernameInput = this.username.getText();
             char[] passwordInput = this.password.getPassword();
-            loginUser = new User(usernameInput, String.valueOf(passwordInput));
-            currentUser = loginUser;
             if (isPasswordCorrect(usernameInput, passwordInput)) {
+                currentUser = users.getAUser(new User(usernameInput, String.valueOf(passwordInput)));
+               // System.out.println("user in set check 1" + LoginDisplay.users.getUsers().
+                // contains(LoginDisplay.currentUser));
                 JOptionPane.showMessageDialog(currentFrame, "Success! Welcome "
                         + this.users.getNameFromLogin(currentUser) + "!");
                 // closeWindow();
@@ -113,12 +113,10 @@ public class LoginDisplay extends JPanel implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
             }
 
-            //Zero out the possible password, for security.
             Arrays.fill(passwordInput, '0');
             this.password.selectAll();
             resetFocus();
         } else if (cmd.equals(CREATE_ACCOUNT)) {
-            // closeWindow();
             CreateAccountDisplay.boot();
         }
     }
@@ -171,6 +169,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
     private void loadUsers() {
         try {
             users = jsonReader.read();
+            System.out.println(users.getUsers());
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORAGE);
         }
@@ -181,6 +180,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         Image image = doggy.getImage(); // transform it
         Image newimg = image.getScaledInstance(200, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         doggy = new ImageIcon(newimg);
+
         int loadData = JOptionPane.showOptionDialog(null, "Load your saved courses?", "Load Data",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -189,6 +189,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
         if (loadData == JOptionPane.YES_OPTION) {
             try {
                 users = jsonReader.read();
+                currentUser = users.getAUser(currentUser);
             } catch (IOException e) {
                 System.out.println("Unable to read from file: " + JSON_STORAGE);
             }

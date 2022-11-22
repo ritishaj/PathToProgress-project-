@@ -59,7 +59,7 @@ public class SetOfUsers implements Storable {
 
     // returns the user that matches with given username and password, otherwise return null
     public User getAUser(User user) {
-        for (User u : users) {
+        for (User u : this.users) {
             if (u.getUsername().equals(user.getUsername())
                     &&
                     u.getPassword().equals(user.getPassword())) {

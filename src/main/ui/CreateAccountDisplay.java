@@ -30,8 +30,8 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         currentFrame = LoginDisplay.currentFrame;
         currentFrame.setPreferredSize(new Dimension(700, 200));
 
-        jsonReader = new JsonReader(JSON_STORAGE);
-        jsonWriter = new JsonWriter(JSON_STORAGE);
+        //jsonReader = new JsonReader(JSON_STORAGE);
+        //jsonWriter = new JsonWriter(JSON_STORAGE);
         currentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         name = new JTextField(15);
         username = new JTextField(15);
@@ -39,7 +39,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         password.setActionCommand(OK);
         password.addActionListener(this);
 
-        loadUsers();
+        //loadUsers();
 
         setupText();
     }
@@ -116,17 +116,6 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
     }
 
 
-    protected void resetFocus() {
-        password.requestFocusInWindow();
-    }
-
-    private static boolean isPasswordCorrect(String usernameInput, char[] passwordInput) {
-        String password = String.valueOf(passwordInput);
-        boolean userCorrect = users.validateUser(new User(usernameInput, password));
-
-        return userCorrect;
-    }
-
     private static void createAndShowGUI() {
         //JFrame frame = new JFrame("Create New Account:");
 
@@ -137,8 +126,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         currentFrame.setTitle("Create New Account:");
         currentFrame.revalidate();
         currentFrame.repaint();
-
-        currentFrame.pack();
+        
         currentFrame.setVisible(true);
     }
 
@@ -153,13 +141,13 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
         });
     }
 
-    private void loadUsers() {
+    /*private void loadUsers() {
         try {
             users = jsonReader.read();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORAGE);
         }
-    }
+    }*/
 
     public void closeWindow() {
         setVisible(false);

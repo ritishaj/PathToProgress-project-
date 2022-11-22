@@ -1,12 +1,19 @@
 package ui;
 
 import model.Course;
+import model.SetOfUsers;
 import model.User;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 // CITATION: JOptionPane code modelled from java tutorial
 // https://youtu.be/BuW7y21FcYI
 
@@ -15,41 +22,61 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
     JLabel label = new JLabel("[CURRENT COURSES]", SwingConstants.CENTER);
     DefaultListModel<String> courseList;
     JPanel panel;
-    JList list;
+    JList<String> list;
+    JsonReader jsonReader;
+    JsonWriter jsonWriter;
+    private static final String JSON_STORAGE = "./data/users.json";
     ListSelectionModel listselectionModel;
     private static final String END_COURSE = "end a course";
     User user;
+    //SetOfUsers users;
 
 
     public CurrentCoursesWindow() {
-        user = LoginDisplay.loginUser;
+        user = LoginDisplay.currentUser;
         frame = new JFrame();
         frame.setLayout(new FlowLayout());
         panel = new JPanel();
+        //jsonReader = new JsonReader(JSON_STORAGE);
+        //jsonWriter = new JsonWriter(JSON_STORAGE);
+        //loadUsers();
 
         JComponent buttonPanel = displayOptions();
 
+        init();
 
-        setupCourses();
-        setupList();
 
-        label.setBounds(0, 0, 500,
-                50);
-        label.setFont(new Font(null, Font.CENTER_BASELINE, 20));
-        label.setOpaque(true);
-        label.setForeground(Color.YELLOW);
-        label.setBackground(Color.black);
 
         panel.add(label);
         panel.add(list);
         frame.add(panel);
         frame.add(buttonPanel);
+        /*frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                saveData();
+            }
+        });*/
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(440, 420);
         frame.setVisible(true);
         panel.setVisible(true);
 
+    }
+
+    public void init() {
+        setupLabel();
+        setupCourses();
+        setupList();
+    }
+
+    public void setupLabel() {
+        label.setBounds(0, 0, 500,
+                50);
+        label.setFont(new Font(null, Font.CENTER_BASELINE, 20));
+        label.setOpaque(true);
+        label.setForeground(Color.YELLOW);
+        label.setBackground(Color.black);
     }
 
     public void setupList() {
@@ -112,14 +139,51 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         }
         return null;
     }
+    /*
+    public void loadUsers() {
+        try {
+            users = jsonReader.read();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORAGE);
+        }
+    }
+
+    public void saveData() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(users);
+            jsonWriter.close();
+            System.out.println(users.getUsers());
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORAGE);
+        }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent a) {
         String cmd = a.getActionCommand();
 
         if (END_COURSE.equals(cmd)) {
-            listselectionModel = list.getSelectionModel();
-            listselectionModel.addListSelectionListener(
+
+            String courseName = list.getSelectedValue();
+            Course course = findCourseWithName(courseName);
+            int endCourse = JOptionPane.showConfirmDialog(null, "End this course?",
+                    "END " + courseName, JOptionPane.YES_NO_OPTION);
+            if (endCourse == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Course tracking over! "
+                                + "Congrats :)",
+                        courseName + " over!", JOptionPane.INFORMATION_MESSAGE);
+                user.removeFromCurrent(course);
+                int index = user.getCurrentCourses().getCourses().indexOf(course);
+                user.removeGradeGoal(index);
+                user.addToPast(course);
+            }
+
+        }
+
+    }
+    //listselectionModel = list.getSelectionModel();
+            /*listselectionModel.addListSelectionListener(
                     e -> {
                         String courseName = (String) list.getSelectedValue();
                         Course course = findCourseWithName(courseName);
@@ -127,17 +191,13 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
                                 "END " + courseName, JOptionPane.YES_NO_OPTION);
                         if (endCourse == JOptionPane.YES_OPTION) {
                             JOptionPane.showMessageDialog(null, "Course tracking over! "
-                                           + "Congrats :)",
-                                     courseName + " over!", JOptionPane.INFORMATION_MESSAGE);
+                                            + "Congrats :)",
+                                    courseName + " over!", JOptionPane.INFORMATION_MESSAGE);
                             user.removeFromCurrent(course);
                             int index = user.getCurrentCourses().getCourses().indexOf(course);
                             user.removeGradeGoal(index);
                             user.addToPast(course);
                         }
 
-                    });
-
-        }
-
-    }
+                    });*/
 }

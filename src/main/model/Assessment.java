@@ -44,7 +44,7 @@ public class Assessment implements Storable {
 
     //EFFECTS: returns Assessment as a JSON object
     @Override
-    public JSONObject toJson() {
+    public JSONObject   toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("weight", weight);
