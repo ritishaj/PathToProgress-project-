@@ -10,10 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 // CITATION: JOptionPane code modelled from java tutorial
 // https://youtu.be/BuW7y21FcYI
 
@@ -23,24 +20,18 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
     DefaultListModel<String> courseList;
     JPanel panel;
     JList<String> list;
-    JsonReader jsonReader;
-    JsonWriter jsonWriter;
-    private static final String JSON_STORAGE = "./data/users.json";
     ListSelectionModel listselectionModel;
     private static final String END_COURSE = "end a course";
     User user;
-    //SetOfUsers users;
 
 
+    // MODIFIES: this
+    // EFFECTS: creates new frame and adds elements to it
     public CurrentCoursesWindow() {
         user = LoginDisplay.currentUser;
         frame = new JFrame();
         frame.setLayout(new FlowLayout());
         panel = new JPanel();
-        //jsonReader = new JsonReader(JSON_STORAGE);
-        //jsonWriter = new JsonWriter(JSON_STORAGE);
-        //loadUsers();
-
         JComponent buttonPanel = displayOptions();
 
         init();
@@ -64,12 +55,15 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes some elements onto frame
     public void init() {
         setupLabel();
         setupCourses();
         setupList();
     }
 
+    // EFFECTS: sets up label
     public void setupLabel() {
         label.setBounds(0, 0, 500,
                 50);
@@ -79,6 +73,7 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         label.setBackground(Color.black);
     }
 
+    // EFFECTS: sets up a JList with courselist
     public void setupList() {
         courseList = new DefaultListModel<>();
         addCourses();
@@ -92,6 +87,8 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds button onto panel
     public JComponent displayOptions() {
         JPanel p = new JPanel(new GridLayout(0, 1));
         JButton endCourse = new JButton("End a Course");
@@ -104,10 +101,12 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         return p;
     }
 
+    // EFFECTS: sets up user's current courses
     public void setupCourses() {
         user.getCurrentCourses().getCourses();
     }
 
+    // EFFECTS: adds user's current courses into a courselist
     public void addCourses() {
         for (int i = 0; i < user.getCurrentCourses().getCourses().size(); i++) {
             String courseName = user.getCurrentCourses().getCourses().get(i).getCourseName();
@@ -116,6 +115,7 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: shows academic goal of selected course
     public void selectACourse() {
         listselectionModel = list.getSelectionModel();
         listselectionModel.addListSelectionListener(
@@ -159,6 +159,8 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         }
     }*/
 
+    // MODIFIES: this, PastCoursesWindow
+    // EFFECTS: prompts user to end a current course and add it to their past courses
     @Override
     public void actionPerformed(ActionEvent a) {
         String cmd = a.getActionCommand();

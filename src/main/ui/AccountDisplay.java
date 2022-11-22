@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-// CITATION: account display photo is from https://mobcup.net/wallpaper/you-can-do-it-maumk8gc
+// CITATIONS:
+// account display photo is from https://mobcup.net/wallpaper/you-can-do-it-maumk8gc
+// save data baby photo is from http://www.picturequotes.com/you-can-do-it-quotes
 
 public class AccountDisplay extends JPanel implements ActionListener {
     private static final String JSON_STORAGE = "./data/users.json";
@@ -131,7 +133,7 @@ public class AccountDisplay extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: prompts user to save data before logging out
     public void saveDataOption() {
-        ImageIcon smiley = new ImageIcon("smile.png");
+        ImageIcon smiley = new ImageIcon("./data/dont-worry-you-got-this-quote-1.jpg");
         JsonWriter jsonWriter = new JsonWriter(JSON_STORAGE);
         int loadData = JOptionPane.showOptionDialog(null, "Save your courses?",
                 "Save Data",

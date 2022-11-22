@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PastCoursesWindow extends JPanel implements ActionListener {
+public class PastCoursesWindow extends JPanel {
     JFrame frame;
     JLabel label = new JLabel("[PAST COURSES]", SwingConstants.CENTER);
     DefaultListModel<String> courseList;
@@ -17,7 +17,8 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
     ListSelectionModel listselectionModel;
     User user;
 
-
+    // MODIFIES: this
+    // EFFECTS: creates new frame and adds elements to it
     public PastCoursesWindow() {
         user = LoginDisplay.currentUser;
         frame = new JFrame();
@@ -46,6 +47,7 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: sets up JList with courseList
     public void setupList() {
         courseList = new DefaultListModel<>();
         addCourses();
@@ -59,11 +61,12 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
 
     }
 
-
+    // EFFECTS: sets up user's past courses
     public void setupCourses() {
         user.getPastCourses().getCourses();
     }
 
+    // EFFECTS: adds user's past courses to courseList
     public void addCourses() {
         for (int i = 0; i < user.getPastCourses().getCourses().size(); i++) {
             String courseName = user.getPastCourses().getCourses().get(i).getCourseName();
@@ -72,6 +75,7 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: selected course shows a pop up message
     public void selectACourse() {
         listselectionModel = list.getSelectionModel();
         listselectionModel.addListSelectionListener(
@@ -79,7 +83,7 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
                     String courseName = (String) list.getSelectedValue();
                     Course course = findCourseWithName(courseName);
                     //int index = user.getCurrentCourses().getCourses().indexOf(course);
-                    JOptionPane.showMessageDialog(null, "Course completed :)",
+                    JOptionPane.showMessageDialog(null, "Course completed u are fabulous :)",
                             "info for " + courseName, JOptionPane.INFORMATION_MESSAGE);
                 });
     }
@@ -95,10 +99,6 @@ public class PastCoursesWindow extends JPanel implements ActionListener {
         return null;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent a) {
-//
-    }
 }
 
 

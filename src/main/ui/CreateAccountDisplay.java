@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static ui.LoginDisplay.users;
+
 public class CreateAccountDisplay extends JPanel implements ActionListener {
     private static String OK = "CREATE!";
     protected static JFrame currentFrame;
@@ -24,7 +26,6 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
 
 
     private static User loginUser;
-    private static SetOfUsers users;
 
     // MODIFIES: LoginDisplay, this
     // EFFECTS: creates elements and sets up create account display
@@ -101,10 +102,10 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
             char[] passwordInput = this.password.getPassword();
             loginUser = new User(nameInput, usernameInput, String.valueOf(passwordInput));
             try {
+                users.addUser(loginUser);
                 jsonWriter.open();
                 jsonWriter.write(users);
                 jsonWriter.close();
-                LoginDisplay.users.addUser(loginUser);
             } catch (FileNotFoundException f) {
                 System.out.println("Unable to write to file: " + JSON_STORAGE);
                 JOptionPane.showMessageDialog(currentFrame,
@@ -113,7 +114,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(currentFrame, "Account Created! Welcome "
                     + nameInput + "!");
             // closeWindow();
-            AccountDisplay.boot();
+            LoginDisplay.boot();
         }
 
 //            //Zero out the possible password, for security.
