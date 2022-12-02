@@ -3,6 +3,7 @@ package ui;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+// initiates the GUI program
 public class Main {
     public static void main(String[] args) {
         try {

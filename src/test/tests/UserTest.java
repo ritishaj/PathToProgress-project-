@@ -3,8 +3,14 @@ package tests;
 import exceptions.NoCompleteAssessmentException;
 import model.*;
 
+import model.events.Event;
+import model.events.EventLog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -61,6 +67,7 @@ public class UserTest {
 
     @Test
     public void addToCurrentTestAlreadyThere() {
+        EventLog el = EventLog.getInstance();
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c2);
@@ -68,6 +75,7 @@ public class UserTest {
         assertEquals(2, testUser.getCurrentCourses().numOfCourses());
         assertTrue(testUser.getCurrentCourses().doesContain(c2));
         assertEquals(c2, testUser.getCurrentCourses().getCourses().get(1));
+
     }
 
     @Test
@@ -96,6 +104,8 @@ public class UserTest {
 
     @Test
     public void addGradeGoalTest() {
+        EventLog el = EventLog.getInstance();
+
         testUser.addToCurrent(c1);
         testUser.addGradeGoal(89);
         testUser.addToCurrent(c2);

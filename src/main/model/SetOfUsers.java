@@ -7,6 +7,7 @@ import persistence.Storable;
 import java.util.Collection;
 import java.util.HashSet;
 
+// represents a set of users
 public class SetOfUsers implements Storable {
     Collection<User> users;
 

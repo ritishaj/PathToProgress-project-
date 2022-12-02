@@ -7,8 +7,10 @@ import model.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+
+// represents a popup window with a list of courses that user can add into their current courses
+
 // CITATION: a list of displayed courses is modelled from to How to use a List Samples :
 // https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
 // https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
@@ -69,6 +71,7 @@ public class AddCourseWindow extends JPanel {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up courses
     public void setupCourses() {
         ubcCourses = new UbcCourses();
@@ -103,7 +106,7 @@ public class AddCourseWindow extends JPanel {
 
     }
 
-    // MODIFIES: CurrentCoursesWindow
+    // MODIFIES: CurrentCoursesWindow, this
     // EFFECTS: adds a selected course to user's current courses
     public void addACourse() {
         listselectionModel = list.getSelectionModel();

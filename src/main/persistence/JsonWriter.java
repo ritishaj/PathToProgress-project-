@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+// represents a JSON Writer which reads the data stored in a file
 // CITATION: code is modelled based on the supplied WorkRoom example for CPSC210
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonWriter {

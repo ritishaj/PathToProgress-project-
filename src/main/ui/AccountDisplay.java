@@ -1,6 +1,8 @@
 package ui;
 
 import model.SetOfUsers;
+import model.events.EventLog;
+import model.events.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -8,32 +10,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+// represents a panel with account menu after user is logged in
+
 // CITATIONS:
 // account display photo is from https://mobcup.net/wallpaper/you-can-do-it-maumk8gc
 // save data baby photo is from http://www.picturequotes.com/you-can-do-it-quotes
 
 public class AccountDisplay extends JPanel implements ActionListener {
     private static final String JSON_STORAGE = "./data/users.json";
-    //private static SetOfUsers users;
     private static final String CURRENT_COURSES = "view current courses";
     private static final String PAST_COURSES = "view past courses";
     private static final String ADD_COURSES = "add courses";
     private static final String LOG_OUT = "Log Out";
-    //private final JsonWriter jsonWriter;
-    //private final JsonReader jsonReader;
     private static JFrame currentFrame;
 
     // MODIFIES: LoginDisplay, this
     // EFFECTS: creates elements and sets up account menu display
     public AccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
-        currentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        //jsonReader = new JsonReader(JSON_STORAGE);
-        //jsonWriter = new JsonWriter(JSON_STORAGE);
-        //loadUsers();
+        currentFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         JComponent buttonPanel = displayOptions();
         add(buttonPanel);
@@ -42,6 +42,17 @@ public class AccountDisplay extends JPanel implements ActionListener {
         JLabel label = new JLabel(icon);
         add(label);
         setPreferredSize(new Dimension(400, 500));
+
+        currentFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                saveDataOption();
+                closeWindow();
+                LoginDisplay.boot();
+
+            }
+        });
+
 
     }
 
@@ -158,10 +169,17 @@ public class AccountDisplay extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: closes account window
     public void closeWindow() {
+        EventLog eventLog = EventLog.getInstance();
+        for (Event nextEvent : eventLog) {
+            System.out.println(nextEvent.toString() + "\n\n");
+        }
         setVisible(false);
         currentFrame.dispose();
+
+       // currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
     }
 
 }

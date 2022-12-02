@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import static ui.LoginDisplay.users;
 
+// represents a panel where users can create an account
 public class CreateAccountDisplay extends JPanel implements ActionListener {
     private static String OK = "CREATE!";
     protected static JFrame currentFrame;
@@ -31,7 +32,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
     // EFFECTS: creates elements and sets up create account display
     public CreateAccountDisplay() {
         currentFrame = LoginDisplay.currentFrame;
-        currentFrame.setPreferredSize(new Dimension(1200, 200));
+        currentFrame.setSize(1200, 200);
 
         jsonReader = new JsonReader(JSON_STORAGE);
         jsonWriter = new JsonWriter(JSON_STORAGE);
@@ -90,6 +91,7 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this, SetOfUsers
     // EFFECTS: sets up the action event when a certain button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {

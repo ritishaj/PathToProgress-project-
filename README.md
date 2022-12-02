@@ -26,6 +26,28 @@ a course to end (you can see a display of this in view past courses).
 - You can save the state of my application by clicking the logout button and selecting yes to saving courses. 
 - You can reload the state of my application by logging in and selecting yes to loading saved courses. 
 
+**_NOTE:_** for ending current courses, make sure to **SELECT** the course first, click **OK** on the popup and then click on the 
+button **End Course** to avoid getting a null pointer exception within the running program, otherwise you will need to 
+log out and try again. 
+
+### Phase 4 Task 2: 
+#### _Adding a course to current courses:_
+<p>Thu Dec 01 17:56:50 PST 2022<br> 
+CPSC110 added to current courses :(</p>
+
+#### _Adding an academic goal for that course:_
+<p>Thu Dec 01 17:56:50 PST 2022<br>
+grade goal for CPSC110: 88 added!</p>
+
+#### _Ending/Removing a course from current courses:_
+<p>Thu Dec 01 17:56:58 PST 2022<br>
+CPSC110 removed!</p>
+
+#### _Ending a course, aka adding it to past courses:_
+<p>Thu Dec 01 17:56:58 PST 2022<br>
+CPSC110 added to past courses :)</p>
+
+
 #### Citations: 
 - Data persistence(JSON) methods, classes and interfaces: 
 https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git

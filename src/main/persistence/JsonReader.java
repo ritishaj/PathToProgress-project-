@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
+
+// represents a JSON Reader which reads data that is stored in a file
 // CITATION: code is modelled based on the supplied WorkRoom example for CPSC210
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 

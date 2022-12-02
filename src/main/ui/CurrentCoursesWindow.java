@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// represents a popup window with a list of user's current courses
 // CITATION: JOptionPane code modelled from java tutorial
 // https://youtu.be/BuW7y21FcYI
 
@@ -63,6 +64,7 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         setupList();
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up label
     public void setupLabel() {
         label.setBounds(0, 0, 500,
@@ -73,6 +75,7 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         label.setBackground(Color.black);
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up a JList with courselist
     public void setupList() {
         courseList = new DefaultListModel<>();
@@ -106,6 +109,7 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         user.getCurrentCourses().getCourses();
     }
 
+    // MODIFIES: this
     // EFFECTS: adds user's current courses into a courselist
     public void addCourses() {
         for (int i = 0; i < user.getCurrentCourses().getCourses().size(); i++) {
@@ -139,25 +143,6 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
         }
         return null;
     }
-    /*
-    public void loadUsers() {
-        try {
-            users = jsonReader.read();
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORAGE);
-        }
-    }
-
-    public void saveData() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(users);
-            jsonWriter.close();
-            System.out.println(users.getUsers());
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORAGE);
-        }
-    }*/
 
     // MODIFIES: this, PastCoursesWindow
     // EFFECTS: prompts user to end a current course and add it to their past courses
@@ -175,9 +160,9 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Course tracking over! "
                                 + "Congrats :)",
                         courseName + " over!", JOptionPane.INFORMATION_MESSAGE);
-                user.removeFromCurrent(course);
                 int index = user.getCurrentCourses().getCourses().indexOf(course);
-                user.removeGradeGoal(index);
+                user.getGradeGoals().remove(index);
+                user.removeFromCurrent(course);
                 user.addToPast(course);
             }
 
@@ -202,4 +187,23 @@ public class CurrentCoursesWindow extends JPanel implements ActionListener {
                         }
 
                     });*/
+        /*
+    public void loadUsers() {
+        try {
+            users = jsonReader.read();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORAGE);
+        }
+    }
+
+    public void saveData() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(users);
+            jsonWriter.close();
+            System.out.println(users.getUsers());
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORAGE);
+        }
+    }*/
 }

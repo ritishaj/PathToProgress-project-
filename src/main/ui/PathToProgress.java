@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-// path to progress application
+// represents the console-based ui of PathToProgress application
 public class PathToProgress {
     private Scanner myObj;
     private static SetOfUsers users;

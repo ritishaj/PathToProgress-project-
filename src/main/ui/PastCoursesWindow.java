@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// represents a popup window which shows user's past courses
 public class PastCoursesWindow extends JPanel {
     JFrame frame;
     JLabel label = new JLabel("[PAST COURSES]", SwingConstants.CENTER);
@@ -47,6 +48,7 @@ public class PastCoursesWindow extends JPanel {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up JList with courseList
     public void setupList() {
         courseList = new DefaultListModel<>();
@@ -66,6 +68,7 @@ public class PastCoursesWindow extends JPanel {
         user.getPastCourses().getCourses();
     }
 
+    // MODIFIES: this
     // EFFECTS: adds user's past courses to courseList
     public void addCourses() {
         for (int i = 0; i < user.getPastCourses().getCourses().size(); i++) {
@@ -75,6 +78,7 @@ public class PastCoursesWindow extends JPanel {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: selected course shows a pop up message
     public void selectACourse() {
         listselectionModel = list.getSelectionModel();

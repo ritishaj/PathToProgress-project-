@@ -2,97 +2,55 @@
     {
         "password": "jhamb",
         "gradeGoals": [],
-        "name": "ROTITTY",
+        "name": "ritisha",
         "currentCourses": [],
         "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "jhamb",
-        "gradeGoals": [],
-        "name": "ROTITTY",
-        "currentCourses": [],
-        "username": "ritisha",
-        "pastCourses": []
-    },
-    {
-        "password": "urmom6969",
-        "gradeGoals": [
-            88,
-            89,
-            89
-        ],
-        "name": "ibby",
-        "currentCourses": [
+        "pastCourses": [
             {
-                "courseName": "LING100",
-                "assessments": [{
-                    "grade": 89,
-                    "name": "O",
-                    "weight": 80
-                }]
+                "courseName": "EOSC320",
+                "assessments": []
+            },
+            {
+                "courseName": "PSYC101",
+                "assessments": []
+            },
+            {
+                "courseName": "ASTR111",
+                "assessments": []
+            },
+            {
+                "courseName": "EOSC320",
+                "assessments": []
             },
             {
                 "courseName": "CPSC110",
                 "assessments": []
             }
-        ],
-        "username": "ibby2001",
-        "pastCourses": [{
-            "courseName": "MATH100",
-            "assessments": [{
-                "grade": -1,
-                "name": "UO",
-                "weight": 89
-            }]
-        }]
+        ]
     },
     {
-        "password": "jhammb123",
+        "password": "gloria",
         "gradeGoals": [],
-        "name": "ritisha",
+        "name": "gloria",
         "currentCourses": [],
-        "username": "'rtisha",
+        "username": "gloria",
         "pastCourses": []
+    },
+    {
+        "password": "joe",
+        "gradeGoals": [],
+        "name": "joe",
+        "currentCourses": [],
+        "username": "joe",
+        "pastCourses": [
+            {
+                "courseName": "CPSC210",
+                "assessments": []
+            },
+            {
+                "courseName": "CPSC210",
+                "assessments": []
+            }
+        ]
     }
 ]}

@@ -1,6 +1,8 @@
 package model;
 
 import exceptions.NoCompleteAssessmentException;
+import model.events.Event;
+import model.events.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Storable;
@@ -48,6 +50,8 @@ public class User implements Storable {
         if (!(currentCourses.doesContain(course))) {
             currentCourses.addCourse(course);
             System.out.println("course added");
+            EventLog.getInstance().logEvent(new Event(course.getCourseName()
+                    + " added to current courses :("));
             return true;
         } else {
             System.out.println("course is already there bro");
@@ -60,6 +64,7 @@ public class User implements Storable {
     public void removeFromCurrent(Course course) {
         if (currentCourses.doesContain(course)) {
             currentCourses.removeCourse(course);
+            EventLog.getInstance().logEvent(new Event(course.getCourseName() + " removed!"));
         }
     }
 
@@ -67,6 +72,7 @@ public class User implements Storable {
     // EFFECTS: adds a course to the list of past courses
     public void addToPast(Course course) {
         pastCourses.addCourse(course);
+        EventLog.getInstance().logEvent(new Event(course.getCourseName() + " added to past courses :)"));
     }
 
     // REQUIRES: goal >= 50 & goal <=100
@@ -74,6 +80,13 @@ public class User implements Storable {
     // EFFECTS: adds a grade goal
     public void addGradeGoal(Integer goal) {
         gradeGoals.add(goal);
+        int index = gradeGoals.indexOf(goal);
+        if (currentCourses.getCourseNames().size() == gradeGoals.size()) {
+            Course course = currentCourses.getCourses().get(index);
+            EventLog.getInstance().logEvent(new Event("grade goal for " + course.getCourseName() + ": "
+                    + Integer.toString(goal) + " added!"));
+        }
+
     }
 
     // MODIFIES: this
@@ -181,7 +194,6 @@ public class User implements Storable {
 
         return jsonArray;
     }
-
 
 
 }

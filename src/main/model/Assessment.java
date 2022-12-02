@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Storable;
 
+// represents as assessment, having a weight, name and grade that can later be set
 public class Assessment implements Storable {
     protected double weight;
     protected String name;

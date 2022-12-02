@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Arrays;
 
+// represents a panel that allows users to log into the application
 // CITATION: code is modelled from the PasswordDemo tutorial
 // https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html
 public class LoginDisplay extends JPanel implements ActionListener {
@@ -96,6 +97,7 @@ public class LoginDisplay extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up the action event when a certain button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -210,6 +212,17 @@ public class LoginDisplay extends JPanel implements ActionListener {
                 System.out.println("Unable to read from file: " + JSON_STORAGE);
             }
         }
+        if (loadData == JOptionPane.NO_OPTION) {
+            clearUserData();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: clears the user's lists of gradegoals, currentcourses, and pastcourses
+    public void clearUserData() {
+        currentUser.getGradeGoals().clear();
+        currentUser.getCurrentCourses().getCourses().clear();
+        currentUser.getPastCourses().getCourses().clear();
     }
 
 

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// represents a list of courses
 public abstract class ListOfCourses {
     List<Course> courses;
 
