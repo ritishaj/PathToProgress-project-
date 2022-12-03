@@ -67,7 +67,6 @@ public class UserTest {
 
     @Test
     public void addToCurrentTestAlreadyThere() {
-        EventLog el = EventLog.getInstance();
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c1);
         testUser.addToCurrent(c2);
@@ -104,7 +103,6 @@ public class UserTest {
 
     @Test
     public void addGradeGoalTest() {
-        EventLog el = EventLog.getInstance();
 
         testUser.addToCurrent(c1);
         testUser.addGradeGoal(89);

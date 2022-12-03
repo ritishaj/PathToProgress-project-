@@ -33,6 +33,7 @@ public class EventLogTest {
 
     @Test
     public void currentCourseAdded() {
+        EventLog.getInstance().clear();
         user1.addToCurrent(c1);
         user1.addGradeGoal(98);
 
@@ -51,14 +52,14 @@ public class EventLogTest {
             l.add(next);
         }
 
-        assertEquals(c1.getCourseName() +" added to current courses :(", l.get(0).getDescription());
-        assertEquals("grade goal for COGS200: 98 added!", l.get(1).getDescription());
+        assertEquals(c1.getCourseName() +" added to current courses :(", l.get(1).getDescription());
+        assertEquals("grade goal for COGS200: 98 added!", l.get(2).getDescription());
 
-        assertEquals(c2.getCourseName() +" added to current courses :(", l.get(2).getDescription());
-        assertEquals("grade goal for " + c2.getCourseName() + ": 89 added!", l.get(3).getDescription());
+        assertEquals(c2.getCourseName() +" added to current courses :(", l.get(3).getDescription());
+        assertEquals("grade goal for " + c2.getCourseName() + ": 89 added!", l.get(4).getDescription());
 
-        assertEquals(c3.getCourseName() +" added to current courses :(", l.get(4).getDescription());
-        assertEquals("grade goal for " + c3.getCourseName() + ": 77 added!", l.get(5).getDescription());
+        assertEquals(c3.getCourseName() +" added to current courses :(", l.get(5).getDescription());
+        assertEquals("grade goal for " + c3.getCourseName() + ": 77 added!", l.get(6).getDescription());
 
 
     }
@@ -80,10 +81,10 @@ public class EventLogTest {
             l.add(next);
         }
 
-        assertEquals(c1.getCourseName() +" added to current courses :(", l.get(6).getDescription());
-        assertEquals("grade goal for COGS200: 98 added!", l.get(7).getDescription());
-        assertEquals(c1.getCourseName() +" removed!", l.get(8).getDescription());
-        assertEquals(c1.getCourseName() +" added to past courses :)", l.get(9).getDescription());
+        assertEquals(c1.getCourseName() +" added to current courses :(", l.get(7).getDescription());
+        assertEquals("grade goal for COGS200: 98 added!", l.get(8).getDescription());
+        assertEquals(c1.getCourseName() +" removed!", l.get(9).getDescription());
+        assertEquals(c1.getCourseName() +" added to past courses :)", l.get(10).getDescription());
 
     }
 }
