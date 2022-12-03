@@ -25,6 +25,14 @@
             {
                 "courseName": "CPSC110",
                 "assessments": []
+            },
+            {
+                "courseName": "CPSC210",
+                "assessments": []
+            },
+            {
+                "courseName": "PSYC101",
+                "assessments": []
             }
         ]
     },

@@ -47,6 +47,16 @@ CPSC110 removed!</p>
 <p>Thu Dec 01 17:56:58 PST 2022<br>
 CPSC110 added to past courses :)</p>
 
+### Phase 4 Task 3: 
+
+#### _WAYS TO REFACTOR:_
+- Establishing a single point of control in GUI classes (maybe in LoginDisplay) for User field so the code is less repetitive and coupling is low 
+- Improving cohesion of User class by creating a different class for Course Manager to handle adding/removing courses 
+- Handle exceptions by creating checked exceptions (for things like adding a course that is already there, username is invalid, etc.) instead of if-then statements
+- Shifting some elements into fields of GUI classes instead of having them as dependencies to make the code more consistent and more concise (ex. Some GUI classes have fields for JSON Reader/Writer and some have them as dependencies)
+- Creating a HashMap for courses and their corresponding grade goals instead of having two separate lists with matching indexes because these two types of elements are associated with each other (each course has a grade goal)
+- Make the functionality of methods in GUI classes easier to understand by breaking it down to clean up the code - this can possibly be done by extracting them and renaming them
+- Refactoring code to spawn the LoginDisplay GUI  from the main method so it does not depend on the console-based UI
 
 #### Citations: 
 - Data persistence(JSON) methods, classes and interfaces: 

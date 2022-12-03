@@ -24,8 +24,6 @@ public class CreateAccountDisplay extends JPanel implements ActionListener {
     private static final String JSON_STORAGE = "./data/users.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-
-
     private static User loginUser;
 
     // MODIFIES: LoginDisplay, this

@@ -60,6 +60,7 @@ public class EventLogTest {
         assertEquals(c3.getCourseName() +" added to current courses :(", l.get(4).getDescription());
         assertEquals("grade goal for " + c3.getCourseName() + ": 77 added!", l.get(5).getDescription());
 
+
     }
 
     @Test

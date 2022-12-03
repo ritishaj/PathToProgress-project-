@@ -22,10 +22,7 @@ public class AddCourseWindow extends JPanel {
     JPanel panel;
     JList list;
     ListSelectionModel listselectionModel;
-    CurrentCourses currentCourses;
     User user;
-
-
     private UbcCourses ubcCourses;
     private static String value = "";
 
@@ -92,7 +89,7 @@ public class AddCourseWindow extends JPanel {
         ubcCourses.addCourse(eosc320);
         ubcCourses.addCourse(astr111);
 
-        currentCourses = new CurrentCourses();
+        //currentCourses = new CurrentCourses();
 
 
     }

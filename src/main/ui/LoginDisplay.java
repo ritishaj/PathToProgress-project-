@@ -24,7 +24,6 @@ public class LoginDisplay extends JPanel implements ActionListener {
     private JTextField username;
     private JPasswordField password;
     private static final String JSON_STORAGE = "./data/users.json";
-    //private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
     protected static User currentUser;
@@ -38,8 +37,6 @@ public class LoginDisplay extends JPanel implements ActionListener {
         currentFrame.setPreferredSize(new Dimension(700, 200));
 
         jsonReader = new JsonReader(JSON_STORAGE);
-        //jsonWriter = new JsonWriter(JSON_STORAGE);
-        //loadUsers();
 
         username = new JTextField(15);
         password = new JPasswordField(15);

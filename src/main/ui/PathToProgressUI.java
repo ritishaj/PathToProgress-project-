@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 // represents the console-based ui of PathToProgress application
-public class PathToProgress {
+public class PathToProgressUI {
     private Scanner myObj;
     private static SetOfUsers users;
     private UbcCourses ubcCourses;
@@ -21,7 +21,7 @@ public class PathToProgress {
     private User loginUser;
 
     // EFFECTS: runs the path to progress application
-    public PathToProgress() throws FileNotFoundException {
+    public PathToProgressUI() throws FileNotFoundException {
         LoginDisplay.boot();
         jsonWriter = new JsonWriter(JSON_STORAGE);
         jsonReader = new JsonReader(JSON_STORAGE);
@@ -44,8 +44,6 @@ public class PathToProgress {
     // MODIFIES: this
     // EFFECTS: initializes users and institution courses
     private void init() {
-        User rits = new User("ROTITTY", "ritisha", "jhamb");
-        users.addUser(rits);
         ubcCourses = new UbcCourses();
         Course cpsc110 = new Course("CPSC110");
         Course phil220 = new Course("PHIL220");
