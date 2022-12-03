@@ -28,7 +28,7 @@ a course to end (you can see a display of this in view past courses).
 
 **_NOTE:_** for ending current courses, make sure to **SELECT** the course first, click **OK** on the popup and then click on the 
 button **End Course** to avoid getting a null pointer exception within the running program, otherwise you will need to 
-log out and try again. 
+log out and try again. If you click the **End Course** button multiple times, this may also result in a null pointer exception and you'll have to restart the application to properly run the code.
 
 ### Phase 4 Task 2: 
 #### _Adding a course to current courses:_
@@ -56,7 +56,7 @@ CPSC110 added to past courses :)</p>
 - Shifting some elements into fields of GUI classes instead of having them as dependencies to make the code more consistent and more concise (ex. Some GUI classes have fields for JSON Reader/Writer and some have them as dependencies)
 - Creating a HashMap for courses and their corresponding grade goals instead of having two separate lists with matching indexes because these two types of elements are associated with each other (each course has a grade goal)
 - Make the functionality of methods in GUI classes easier to understand by breaking it down to clean up the code - this can possibly be done by extracting them and renaming them
-- Refactoring code to spawn the LoginDisplay GUI  from the main method so it does not depend on the console-based UI
+- Refactoring code to spawn the LoginDisplay GUI from the main method so it does not depend on the console-based UI
 
 #### Citations: 
 - Data persistence(JSON) methods, classes and interfaces: 
